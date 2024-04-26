@@ -1,0 +1,1 @@
+crearCliente(dni.value, nombre.value, apellido.value, direccion.value, telefono.value)
