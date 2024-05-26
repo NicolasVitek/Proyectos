@@ -1,0 +1,2 @@
+select * from clients cl inner join curso c on cl.id=c.client_id; 
+select cl.name, cl.lastname, c.agreement, c.scoreTag, c.confidence from TextAnalyzedResults c inner join clients cl on cl.id=c.client_id;
