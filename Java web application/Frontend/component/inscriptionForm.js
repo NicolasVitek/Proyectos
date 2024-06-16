@@ -1,7 +1,7 @@
 export class inscriptionForm {
   static addForm(container) {
     let form = `<h2>Analisis de sentimientos</h2>
-    <form class="inscriptionForm">
+    <form class="inscriptionForm" id="inscriptionForm">
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationServer01">Nombre</label>
@@ -18,7 +18,7 @@ export class inscriptionForm {
           <input
             type="text"
             class="form-control"
-            id="inpSurname"
+            id="inpLastName"
             placeholder="Apellido"
             required
           />
@@ -27,13 +27,13 @@ export class inscriptionForm {
           <label for="validationServerUsername">Nombre de usuario</label>
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inpUser">@</span>
+              <span class="input-group-text" id="inpUserName">@</span>
             </div>
             <input
               type="text"
               class="form-control"
-              id="validationServerUsername"
-              placeholder="Apellido"
+              id="userName"
+              placeholder="Nombre de usuario"
               aria-describedby="inputGroupPrepend3"
               required
             />
@@ -56,7 +56,7 @@ export class inscriptionForm {
           <input
             type="text"
             class="form-control"
-            id="inpProvincia"
+            id="inpState"
             placeholder="Provincia"
             required
           />
@@ -66,7 +66,7 @@ export class inscriptionForm {
           <input
             type="text"
             class="form-control"
-            id="inpProvincia"
+            id="inpZipCode"
             placeholder="Codigo postal"
             required
           />
@@ -78,6 +78,7 @@ export class inscriptionForm {
           class="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          required
         ></textarea>
       </div>
       <div class="form-group">
@@ -95,7 +96,10 @@ export class inscriptionForm {
           <div class="invalid-feedback">Debe aceptar antes de continuar</div>
         </div>
       </div>
-      <button class="btn btn-primary" id="btnSubmit" type="submit">
+      <button class="btn btn-primary" id="btnSubmit" onClick="submitClient()" type="button">
+        Registrar cliente
+      </button>
+      <button class="btn btn-primary" id="btnSubmit" onClick="textAnalizer()" type="button">
         Analizar texto
       </button>
       <div class="textAnalyzed"></div>

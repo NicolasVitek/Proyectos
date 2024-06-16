@@ -26,7 +26,7 @@ export class translateKeyValues {
       default:
         break;
     }
-    return this.score_tag
+    return this.score_tag;
   }
   translateIrony() {
     switch (this.irony) {
@@ -67,13 +67,22 @@ export class translateKeyValues {
     }
     return this.agreement;
   }
+  getJsonValues() {
+    return {
+      score_tag: this.score_tag,
+      irony: this.irony,
+      subjectivity: this.subjectivity,
+      agreement: this.agreement,
+      confidence: this.confidence,
+    };
+  }
   getTranslatedValues() {
     return {
       score_tag: this.translateScoreTag(),
       irony: this.translateIrony(),
       subjectivity: this.translateSubjectivity(),
       agreement: this.translateAgreement(),
-      confidence: this.confidence
+      confidence: this.confidence,
     };
   }
 }

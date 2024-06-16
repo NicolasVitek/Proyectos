@@ -1,10 +1,8 @@
 import { PrintValues } from "../component/printKeyValues.js";
 import { translateKeyValues } from "../component/translateKeyValues.js";
 
-const formdata = new FormData();
-formdata.append("key", "86c2bbd98a3a00d5b15330c4fcdc17a3");
-formdata.append("txt", "ESTOY MUY triste hoy, tengo ganas de morirme");
-formdata.append("lang", "es"); // Código de lenguaje
+const clientUrl = "http://localhost:8080/client";
+const resultUrl = "http://localhost:8080/result";
 
 var json = {
   status: {
@@ -63,13 +61,74 @@ var json = {
   ],
 };
 
-const requestOptions = {
-  method: "POST",
-  body: formdata,
-  redirect: "follow",
+export const registerClient = async (
+  name,
+  lastName,
+  userName,
+  city,
+  state,
+  zipCode
+) => {
+  await fetch(clientUrl, {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({
+      name: name,
+      lastName: lastName,
+      userName: userName,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+    }),
+  })
+    .then((httpResponse) => {
+      if (httpResponse.ok) {
+        return httpResponse.json();
+      }
+      if (httpResponse.status == 500) {
+        deployAlert("El cliente ya fue agregado");
+      }
+    })
+    .then(console.log("Cliente creado"));
+};
+export const registerResult = async (
+  userName,
+  scoreTag,
+  irony,
+  subjectivity,
+  agreement,
+  confidence
+) => {
+  await fetch(`${resultUrl}/${userName}`, {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({
+      userName: userName,
+      scoreTag: scoreTag,
+      irony: irony,
+      subjectivity: subjectivity,
+      agreement: agreement,
+      confidence: confidence,
+    }),
+  })
+    .then((httpResponse) => {
+      if (httpResponse.ok) {
+        return httpResponse.json();
+      }
+    })
+    .then(console.log("Resultado agregado"));
 };
 
-export const analisar = async (constructor) => {
+export const analizeText = async (text, callback) => {
+  const formdata = new FormData();
+  formdata.append("key", "86c2bbd98a3a00d5b15330c4fcdc17a3");
+  formdata.append("txt", text);
+  formdata.append("lang", "es");
+  const requestOptions = {
+    method: "POST",
+    body: formdata,
+    redirect: "follow",
+  };
   await fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
     .then((response) => {
       if (!response.ok) {
@@ -77,18 +136,18 @@ export const analisar = async (constructor) => {
       }
       return response.json();
     })
-    .then((data) => {
-      console.log("Éxito:", data);
-      constructor(data);
+    .then((json) => {
+      callback(json);
     })
     .catch((error) => {
       console.error("Error al hacer la solicitud:", error);
     });
 };
 
-const translator = new translateKeyValues(json);
-const translatedValues = translator.getTranslatedValues();
-export const datos = () => {
-  const area=document.querySelector("#txtResult")
-  PrintValues.print(translatedValues, area)
+
+export const datos = (json) => {
+  const translator = new translateKeyValues(json);
+  const translatedValues = translator.getTranslatedValues();  
+  const area = document.getElementById("txtResult");
+  PrintValues.print(translatedValues, area);
 };

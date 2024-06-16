@@ -1,5 +1,6 @@
-select * from clients cl inner join curso c on cl.id=c.client_id; 
-select cl.name, cl.lastname, c.agreement, c.scoreTag, c.confidence from TextAnalyzedResults c inner join clients cl on cl.id=c.client_id;
+select * from clients cl inner join result_analysis c on cl.id=c.client_id; 
+
+select cl.name, cl.lastName, c.agreement, c.scoreTag, c.confidence from result_analysis c inner join clients cl on cl.id=c.client_id;
 
 {
     "name": "Juan",
@@ -9,3 +10,13 @@ select cl.name, cl.lastname, c.agreement, c.scoreTag, c.confidence from TextAnal
     "state":"Buenos Aires",
     "zipCode":1886
 }
+{
+    "scoreTag":"P+",
+    "agreement":"AGREEMENT",
+    "subjectivity":"OBJECTIVE",
+    "confidence":"100",
+    "irony":"NONIRONIC"
+}
+Comandos SQl Lite
+
+.show

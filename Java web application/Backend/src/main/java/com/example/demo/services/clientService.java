@@ -17,4 +17,7 @@ public class clientService {
     public Client saveClient(Client client){
         return this.clientRepository.save(client);
     }
+    public Client getClientByUserName(String userName){
+        return this.clientRepository.getByUserName(userName);
+    }
 }
