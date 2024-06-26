@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Client;
-import com.example.demo.services.clientService;
+import com.example.demo.services.ClientService;
 
 @RestController
 @RequestMapping("/client")
-public class clientController {
+public class ClientController {
 
     @Autowired
-    clientService clientService;
+    ClientService clientService;
 
     @GetMapping(path = "/id/{id}")
-    public Optional<Client> getClient(@PathVariable int id) {
+    public Client getClient(@PathVariable int id) {
         return this.clientService.getClient(id);
     }
 

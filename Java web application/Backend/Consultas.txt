@@ -1,6 +1,6 @@
 select * from clients cl inner join result_analysis c on cl.id=c.client_id; 
 
-select cl.name, cl.lastName, c.agreement, c.scoreTag, c.confidence from result_analysis c inner join clients cl on cl.id=c.client_id;
+select cl.name, cl.last_name, c.score_tag, c.agreement, c.confidence from result_analysis c inner join clients cl on cl.id=c.client_id;
 
 {
     "name": "Juan",
@@ -18,5 +18,8 @@ select cl.name, cl.lastName, c.agreement, c.scoreTag, c.confidence from result_a
     "irony":"NONIRONIC"
 }
 Comandos SQl Lite
-
+sqlite> delete from clients where id>1;
+sqlite> delete from result_analysis where id>1;
+select * from clients;
+select * from result_analysis;
 .show

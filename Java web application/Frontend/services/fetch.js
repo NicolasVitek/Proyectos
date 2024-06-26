@@ -1,6 +1,3 @@
-import { PrintValues } from "../component/printKeyValues.js";
-import { translateKeyValues } from "../component/translateKeyValues.js";
-
 const clientUrl = "http://localhost:8080/client";
 const resultUrl = "http://localhost:8080/result";
 
@@ -142,12 +139,4 @@ export const analizeText = async (text, callback) => {
     .catch((error) => {
       console.error("Error al hacer la solicitud:", error);
     });
-};
-
-
-export const datos = (json) => {
-  const translator = new translateKeyValues(json);
-  const translatedValues = translator.getTranslatedValues();  
-  const area = document.getElementById("txtResult");
-  PrintValues.print(translatedValues, area);
 };

@@ -1,18 +1,16 @@
 package com.example.demo.services;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Client;
 import com.example.demo.repositories.IClientRepositoy;
 
 @Service
-public class clientService {
+public class ClientService {
     private final IClientRepositoy clientRepository;
-    public clientService(IClientRepositoy clientRepository) {
+    public ClientService(IClientRepositoy clientRepository) {
         this.clientRepository = clientRepository;
     }
-    public Optional<Client> getClient(int id){
-        return this.clientRepository.findById(id);
+    public Client getClient(int id){
+        return this.clientRepository.getById(id);
     }
     public Client saveClient(Client client){
         return this.clientRepository.save(client);

@@ -20,6 +20,9 @@ export class translateKeyValues {
       case "N":
         this.score_tag = "Negativo";
         break;
+      case "N+":
+        this.score_tag = "Muy negativo";
+        break;
       case "NONE":
         this.score_tag = "Sin polaridad";
         break;

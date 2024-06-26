@@ -1,5 +1,5 @@
-export class PrintValues {
-  static print(values, container) {
+export class PrintKeyValues {
+  static execute(values, container) {
     const text = `El análisis del texto ha arrojado los siguientes resultados:
         - Sentimiento: ${values.score_tag}
         - Ironía: ${values.irony}

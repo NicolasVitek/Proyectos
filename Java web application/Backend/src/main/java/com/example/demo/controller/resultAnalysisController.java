@@ -4,18 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.ResultAnalysis;
-import com.example.demo.services.resultAnalysisService;
-
+import com.example.demo.services.ResultAnalysisService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/result")
-public class resultAnalysisController {
+public class ResultAnalysisController {
     @Autowired
-    resultAnalysisService resultAnalysisService;
+    ResultAnalysisService resultAnalysisService;
 
     @PostMapping(path = "/{userName}")
     public ResultAnalysis saveResult(@PathVariable("userName") String userName, @RequestBody ResultAnalysis result) {

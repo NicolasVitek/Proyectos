@@ -16,6 +16,10 @@ public class Client {
     private String city;
     private String state;
     private int zipCode;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getLastName() {
         return lastName;
     }
@@ -23,7 +27,9 @@ public class Client {
     public String getUserName() {
         return userName;
     }
-
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     public String getCity() {
         return city;
     }
