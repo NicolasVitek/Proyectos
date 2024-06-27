@@ -1,4 +1,4 @@
-export class translateKeyValues {
+export class TranslateKeyValues {
   constructor(json) {
     this.score_tag = json.score_tag;
     this.irony = json.irony;
