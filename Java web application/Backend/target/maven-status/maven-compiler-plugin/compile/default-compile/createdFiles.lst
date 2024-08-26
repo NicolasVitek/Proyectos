@@ -1,8 +1,0 @@
-com\example\demo\DemoApplication.class
-com\example\demo\repositories\IClientRepositoy.class
-com\example\demo\services\clientService.class
-com\example\demo\model\ResultAnalysis.class
-com\example\demo\config\WebConfig.class
-com\example\demo\config\WebConfig$1.class
-com\example\demo\model\Client.class
-com\example\demo\controller\clientController.class
