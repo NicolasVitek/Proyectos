@@ -3,7 +3,6 @@ using System;
 using Infraesctructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,20 +15,16 @@ namespace Infraesctructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
             modelBuilder.Entity("Domain.Entities.Carrito", b =>
                 {
                     b.Property<Guid>("CarritoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ClienteId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
@@ -44,10 +39,10 @@ namespace Infraesctructure.Migrations
             modelBuilder.Entity("Domain.Entities.CarritoProducto", b =>
                 {
                     b.Property<Guid>("CarritoId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ProductoId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
@@ -63,21 +58,18 @@ namespace Infraesctructure.Migrations
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<string>("DNI")
-                        .IsRequired()
+                    b.Property<int>("DNI")
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -96,7 +88,7 @@ namespace Infraesctructure.Migrations
                         {
                             ClienteId = 1,
                             Apellido = "Vitek",
-                            DNI = "23344312",
+                            DNI = 23344312,
                             Direccion = "Bynnon 2331",
                             Nombre = "Nicolas",
                             Telefono = "4234-1231"
@@ -107,15 +99,15 @@ namespace Infraesctructure.Migrations
                 {
                     b.Property<Guid>("OrdenId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("CarritoId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime");
 
-                    b.Property<decimal>("Total")
+                    b.Property<double>("Total")
                         .HasColumnType("decimal(15,2)");
 
                     b.HasKey("OrdenId");
@@ -130,9 +122,7 @@ namespace Infraesctructure.Migrations
                 {
                     b.Property<int>("ProductoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductoId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
@@ -140,11 +130,11 @@ namespace Infraesctructure.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Marca")
                         .IsRequired()
@@ -152,9 +142,9 @@ namespace Infraesctructure.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Precio")
+                    b.Property<double>("Precio")
                         .HasColumnType("decimal(15,2)");
 
                     b.HasKey("ProductoId");
@@ -170,7 +160,7 @@ namespace Infraesctructure.Migrations
                             Image = "Http://static.cotodigital3.com.ar/sitios/fotos/full/00523500/00523588.jpg?3.0.138f",
                             Marca = "Sol Serrano",
                             Nombre = "Alfajor",
-                            Precio = 37.99m
+                            Precio = 37.990000000000002
                         },
                         new
                         {
@@ -180,7 +170,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00510600/00510606.jpg?3.0.138f",
                             Marca = "Amanda",
                             Nombre = "Yerba mate",
-                            Precio = 543.33m
+                            Precio = 543.33000000000004
                         },
                         new
                         {
@@ -190,7 +180,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00263300/00263369.jpg?3.0.138f",
                             Marca = "Corper",
                             Nombre = "Pure de tomate",
-                            Precio = 95.4m
+                            Precio = 95.400000000000006
                         },
                         new
                         {
@@ -200,7 +190,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00230100/00230124.jpg?3.0.138f",
                             Marca = "La Virginia",
                             Nombre = "Cafe molido",
-                            Precio = 388.15m
+                            Precio = 388.14999999999998
                         },
                         new
                         {
@@ -210,7 +200,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00537400/00537472.jpg?3.0.138f",
                             Marca = "Doña Pupa",
                             Nombre = "Arvejas",
-                            Precio = 65.39m
+                            Precio = 65.390000000000001
                         },
                         new
                         {
@@ -220,7 +210,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00289600/00289636.jpg?3.0.138f",
                             Marca = "Bonaqua",
                             Nombre = "Agua mineral",
-                            Precio = 91.71m
+                            Precio = 91.709999999999994
                         },
                         new
                         {
@@ -230,7 +220,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00189500/00189594.jpg?3.0.138f",
                             Marca = "Coca-Cola",
                             Nombre = "Gaseosa",
-                            Precio = 134.55m
+                            Precio = 134.55000000000001
                         },
                         new
                         {
@@ -240,7 +230,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00170500/00170599.jpg?3.0.138f",
                             Marca = "La Serenisima",
                             Nombre = "Leche",
-                            Precio = 183.25m
+                            Precio = 183.25
                         },
                         new
                         {
@@ -250,7 +240,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00499100/00499140.jpg?3.0.138f",
                             Marca = "Fudy",
                             Nombre = "Cookie Sandwich",
-                            Precio = 259m
+                            Precio = 259.0
                         },
                         new
                         {
@@ -260,7 +250,7 @@ namespace Infraesctructure.Migrations
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00264600/00264677.jpg?3.0.138f",
                             Marca = "Elite",
                             Nombre = "Pañuelos",
-                            Precio = 149.87m
+                            Precio = 149.87
                         });
                 });
 

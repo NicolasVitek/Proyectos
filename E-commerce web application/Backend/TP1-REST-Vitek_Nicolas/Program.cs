@@ -13,8 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var conectionString = builder.Configuration["ConectionString"];
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conectionString));
+
+var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(conectionString));
+
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IClientCommand, ClientCommand>();
 builder.Services.AddScoped<IClientQuery, ClientQuery>();

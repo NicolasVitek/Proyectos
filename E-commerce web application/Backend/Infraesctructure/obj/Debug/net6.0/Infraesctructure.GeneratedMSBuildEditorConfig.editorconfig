@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Infraesctructure
-build_property.ProjectDir = c:\Users\pc\OneDrive\Facultad\3\Proyecto software\TP1-REST-Vitek_Nicolas\Infraesctructure\
+build_property.ProjectDir = C:\Users\pc\Documents\Nicolas\Backend\Infraesctructure\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

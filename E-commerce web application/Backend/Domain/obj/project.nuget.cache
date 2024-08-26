@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gAH8onSK63Mg7q7+4S4EBm3iaWZPpaGicAL1jw0V3431DQcPUQzXmE5QuPU5mtiT5J93YPE0OvnN0WmckfMx1Q==",
+  "dgSpecHash": "S3CZU+g05hs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\OneDrive\\Facultad\\3\\Proyecto software\\TP1-REST-Vitek_Nicolas\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -23,7 +23,7 @@ namespace Infraesctructure.Persistence
                 entity.Property(t => t.DNI).HasColumnType("nvarchar(10)");
                 entity.Property(t => t.Nombre).HasColumnType("nvarchar(25)");
                 entity.Property(t => t.Apellido).HasColumnType("nvarchar(25)");
-                entity.Property(t => t.Direccion).HasColumnType("nvarchar(MAX)");
+                entity.Property(t => t.Direccion).HasColumnType("TEXT");
                 entity.Property(t => t.Telefono).HasColumnType("nvarchar(13)");
                 entity.Property(t => t.ClienteId).ValueGeneratedOnAdd();
                 entity.HasData(
@@ -165,12 +165,12 @@ namespace Infraesctructure.Persistence
                 entity.ToTable("Producto");
                 entity.HasKey(p => p.ProductoId);
                 entity.Property(p => p.ProductoId).ValueGeneratedOnAdd();
-                entity.Property(p => p.Nombre).HasColumnType("nvarchar(max)");
-                entity.Property(p => p.Descripcion).HasColumnType("nvarchar(max)");
+                entity.Property(p => p.Nombre).HasColumnType("TEXT");
+                entity.Property(p => p.Descripcion).HasColumnType("TEXT");
                 entity.Property(p => p.Marca).HasColumnType("nvarchar(25)");
                 entity.Property(p => p.Codigo).HasColumnType("nvarchar(25)");
                 entity.Property(p => p.Precio).HasColumnType("decimal(15,2)");
-                entity.Property(p => p.Image).HasColumnType("nvarchar(max)");
+                entity.Property(p => p.Image).HasColumnType("TEXT");
                 entity
                 .HasMany<CarritoProducto>(p => p.CarritoProducto)
                 .WithOne(cp => cp.Producto);

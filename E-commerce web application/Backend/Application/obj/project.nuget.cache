@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XkLaUCPXupKnJ9e6cVrknfXF28CBehb4CtRQZrtu8woeq1OvYvyOq0FbFiSjXo5zvmT9VcK3XfV/Uk+/uVyeDw==",
+  "dgSpecHash": "vvIPZoIwHoE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\OneDrive\\Facultad\\3\\Proyecto software\\TP1-REST-Vitek_Nicolas\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.9\\microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",
@@ -17,7 +17,10 @@
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "C:\\Users\\pc\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\pc\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }
