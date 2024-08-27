@@ -4,18 +4,18 @@ using Infraesctructure.Persistence;
 
 namespace Infraesctructure.Command
 {
-    public class CarCommand:ICarCommand
+    public class CartCommand:ICartCommand
     {
         private readonly AppDbContext _context;
 
-        public CarCommand(AppDbContext context)
+        public CartCommand(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task InsertCar(Carrito car)
+        public async Task InsertCart(Cart cart)
         {
-            _context.Add(car);
+            _context.Add(cart);
             await _context.SaveChangesAsync();
         }
     }

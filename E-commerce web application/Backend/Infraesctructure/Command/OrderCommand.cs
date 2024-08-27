@@ -12,7 +12,7 @@ namespace Infraesctructure.Command
         {
             _context = context;
         }
-        public async Task InsertOrder(Orden order)
+        public async Task InsertOrder(Order order)
         {
              _context.Add(order);
             await _context.SaveChangesAsync();

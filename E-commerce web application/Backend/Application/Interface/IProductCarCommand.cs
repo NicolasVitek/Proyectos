@@ -2,11 +2,11 @@
 
 namespace Application.Interface
 {
-    public interface IProductCarCommand
+    public interface IProductCartCommand
     {
-        public Task InsertProductCar(CarritoProducto productCar);
+        public Task InsertProductCart(ProductCart productCart);
 
-        public Task UpdateProductCar(CarritoProducto productCar);
-        public Task DeletedProductCar(CarritoProducto productCar);
+        public Task UpdateProductCart(ProductCart productCart);
+        public Task DeletedProductCart(ProductCart productCart);
     }
 }

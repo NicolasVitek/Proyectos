@@ -3,7 +3,7 @@ using Application.Models;
 using Application.Response;
 using Domain.Entities;
 
-namespace Application.UserCase.Client
+namespace Application.UserCase
 {
     public class ClientService : IClientService
     {
@@ -15,9 +15,9 @@ namespace Application.UserCase.Client
             _query = query;
         }
 
-        public async Task<Cliente> CreateClient(CreateClientRequest request)
+        public async Task<Client> CreateClient(CreateClientRequest request)
         {
-            var client = new Cliente
+            var client = new Client
             {
                 Nombre = request.name,
                 Apellido = request.lastName,
@@ -31,7 +31,7 @@ namespace Application.UserCase.Client
 
         public bool DniValidation(int dni)
         {
-            return (_query.DniValidation(dni));
+            return _query.DniValidation(dni);
         }
 
         public Task<ClientResponse> GetAll(int id)

@@ -1,11 +1,11 @@
 ﻿namespace Domain.Entities
 {
-    public class CarritoProducto
+    public class ProductCart
     {
-        public Guid CarritoId { get; set; }
-        public int ProductoId { get; set; }
+        public Guid CartId { get; set; }
+        public int ProductId { get; set; }
         public int Cantidad { get; set; }
-        public Carrito Carrito { get; set; }
-        public Producto Producto { get; set; }
+        public Cart? Cart { get; set; }
+        public Product? Product { get; set; }
     }
 }

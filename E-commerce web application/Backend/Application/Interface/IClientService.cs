@@ -7,7 +7,7 @@ namespace Application.Interface
 {
     public interface IClientService
     {
-        Task<Cliente> CreateClient(CreateClientRequest request);
+        Task<Client> CreateClient(CreateClientRequest request);
         Task<ClientResponse> GetAll(int id);
         public bool DniValidation(int dni);
     }

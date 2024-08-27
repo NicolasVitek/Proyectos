@@ -17,7 +17,7 @@ namespace Application.UserCase.Product
             var result = await _query.GetAll(name, sort);
             return result.Select(p=> new ProductResponse
             {
-                Id = p.ProductoId,
+                Id = p.ProductId,
                 Nombre =p.Nombre,
                 Marca=p.Marca,
                 Codigo=p.Codigo,
@@ -32,7 +32,7 @@ namespace Application.UserCase.Product
             var product = _query.GetProduct(id);
             return Task.FromResult(new ProductResponse
             {
-                Id=product.ProductoId,
+                Id=product.ProductId,
                 Nombre=product.Nombre,
                 Marca=product.Marca,
                 Precio=product.Precio,

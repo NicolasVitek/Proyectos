@@ -4,28 +4,28 @@ using Infraesctructure.Persistence;
 
 namespace Infraesctructure.Command
 {
-    public class ProductCarCommand:IProductCarCommand
+    public class ProductCartCommand:IProductCartCommand
     {
         private readonly AppDbContext _context;
 
-        public ProductCarCommand(AppDbContext context)
+        public ProductCartCommand(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task DeletedProductCar(CarritoProducto productCar)
+        public async Task DeletedProductCart(ProductCart productCart)
         {
-            _context.Remove(productCar);
+            _context.Remove(productCart);
             await _context.SaveChangesAsync();
         }
-        public async Task UpdateProductCar(CarritoProducto productCar)
+        public async Task UpdateProductCart(ProductCart productCart)
         {
-            _context.Update(productCar);
+            _context.Update(productCart);
             await _context.SaveChangesAsync();
         }
-        public async Task InsertProductCar(CarritoProducto productCar)
+        public async Task InsertProductCart(ProductCart productCart)
         {
-            _context.Add(productCar);
+            _context.Add(productCart);
             await _context.SaveChangesAsync();
         }
     }

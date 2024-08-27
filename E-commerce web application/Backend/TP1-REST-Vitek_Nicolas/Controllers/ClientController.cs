@@ -9,15 +9,16 @@ namespace TP1_REST_Vitek_Nicolas.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors(origins: "http://localhost:5500", headers: "*", methods: "*")]
-    public class ClienteController : ControllerBase
+    public class ClientController : ControllerBase
     {
         private readonly IClientService _service;
-
-        public ClienteController(IClientService service)
+        public ClientController(IClientService service)
         {
             _service = service;
         }
-
+        /// <summary>Returns a client.</summary>
+        /// <param name="id">Client ID.</param>
+        /// <returns>The client given his ID.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAll(int id)
         {
@@ -31,6 +32,8 @@ namespace TP1_REST_Vitek_Nicolas.Controllers
                 return BadRequest("El cliente con ese Id no existe");
             }
         }
+        /// <summary>Create a client.</summary>
+        /// <returns>The object client recently created</returns>
         [HttpPost, ActionName("Crear cliente")]
         public async Task<IActionResult> CreateClient(CreateClientRequest request)
         {

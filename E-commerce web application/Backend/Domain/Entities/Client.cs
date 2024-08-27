@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
-    public class Cliente
+    public class Client
     {
-        public int ClienteId { get; set; }
+        public int ClientId { get; set; }
         public int DNI { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-        public ICollection<Carrito> Carrito { get; set; }
-        public Cliente() { }
-        public Cliente(int dNI, string nombre, string apellido, string direccion, string telefono)
+        public ICollection<Cart> Cart { get; set; }
+        public Client() { }
+        public Client(int dNI, string nombre, string apellido, string direccion, string telefono)
         {
             DNI = dNI;
             Nombre = nombre;

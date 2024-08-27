@@ -1,18 +1,21 @@
 using Application.Interface;
-using Application.UserCase.Car;
-using Application.UserCase.Client;
+using Application.UserCase.cart;
+using Application.UserCase;
 using Application.UserCase.Product;
-using Application.UserCase.Order;
 using Infraesctructure.Command;
 using Infraesctructure.Persistence;
 using Infraesctructure.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+    {
+        c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+    });
 
 var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 
@@ -25,10 +28,10 @@ builder.Services.AddScoped<IClientQuery, ClientQuery>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductQuery, ProductQuery>();
 
-builder.Services.AddScoped<ICarService, CarService>();
-builder.Services.AddScoped<ICarQuery, CarQuery>();
-builder.Services.AddScoped<IProductCarCommand, ProductCarCommand>();
-builder.Services.AddScoped<IProductCarQuery, ProductCarQuery>();
+builder.Services.AddScoped<IProductCartService, ProductCartService>();
+builder.Services.AddScoped<ICartQuery, CartQuery>();
+builder.Services.AddScoped<IProductCartCommand, ProductCartCommand>();
+builder.Services.AddScoped<IProductCartQuery, ProductCartQuery>();
 
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderCommand, OrderCommand>();
@@ -53,7 +56,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 
 }
 app.UseHttpsRedirection();

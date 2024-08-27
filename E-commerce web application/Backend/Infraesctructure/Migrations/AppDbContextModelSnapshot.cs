@@ -17,46 +17,28 @@ namespace Infraesctructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("Domain.Entities.Carrito", b =>
+            modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("CarritoId")
+                    b.Property<Guid>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
-                    b.HasKey("CarritoId");
+                    b.HasKey("CartId");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("ClientId");
 
-                    b.ToTable("Carrito", (string)null);
+                    b.ToTable("Cart", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.CarritoProducto", b =>
+            modelBuilder.Entity("Domain.Entities.Client", b =>
                 {
-                    b.Property<Guid>("CarritoId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.HasKey("CarritoId", "ProductoId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.ToTable("CarritoProducto", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Cliente", b =>
-                {
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("ClientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -79,14 +61,14 @@ namespace Infraesctructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(13)");
 
-                    b.HasKey("ClienteId");
+                    b.HasKey("ClientId");
 
-                    b.ToTable("Cliente", (string)null);
+                    b.ToTable("Client", (string)null);
 
                     b.HasData(
                         new
                         {
-                            ClienteId = 1,
+                            ClientId = 1,
                             Apellido = "Vitek",
                             DNI = 23344312,
                             Direccion = "Bynnon 2331",
@@ -95,13 +77,13 @@ namespace Infraesctructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Orden", b =>
+            modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Property<Guid>("OrdenId")
+                    b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CarritoId")
+                    b.Property<Guid>("CartId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Fecha")
@@ -110,51 +92,46 @@ namespace Infraesctructure.Migrations
                     b.Property<double>("Total")
                         .HasColumnType("decimal(15,2)");
 
-                    b.HasKey("OrdenId");
+                    b.HasKey("OrderId");
 
-                    b.HasIndex("CarritoId")
+                    b.HasIndex("CartId")
                         .IsUnique();
 
-                    b.ToTable("Orden", (string)null);
+                    b.ToTable("Order", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Producto", b =>
+            modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Property<int>("ProductoId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Codigo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Marca")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Precio")
                         .HasColumnType("decimal(15,2)");
 
-                    b.HasKey("ProductoId");
+                    b.HasKey("ProductId");
 
-                    b.ToTable("Producto", (string)null);
+                    b.ToTable("Product", (string)null);
 
                     b.HasData(
                         new
                         {
-                            ProductoId = 1,
+                            ProductId = 1,
                             Codigo = "a-043",
                             Descripcion = "40 grm",
                             Image = "Http://static.cotodigital3.com.ar/sitios/fotos/full/00523500/00523588.jpg?3.0.138f",
@@ -164,7 +141,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 2,
+                            ProductId = 2,
                             Codigo = "a-099",
                             Descripcion = "Edicion 1950, 1 kgrm",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00510600/00510606.jpg?3.0.138f",
@@ -174,7 +151,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 3,
+                            ProductId = 3,
                             Codigo = "a-007",
                             Descripcion = "520 grm",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00263300/00263369.jpg?3.0.138f",
@@ -184,7 +161,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 4,
+                            ProductId = 4,
                             Codigo = "a-211",
                             Descripcion = "20 grm",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00230100/00230124.jpg?3.0.138f",
@@ -194,7 +171,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 5,
+                            ProductId = 5,
                             Codigo = "a-055",
                             Descripcion = "Bajo en sodio, 340 grm",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00537400/00537472.jpg?3.0.138f",
@@ -204,7 +181,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 6,
+                            ProductId = 6,
                             Codigo = "b-013",
                             Descripcion = "Sin gas, 2.5 lt",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00289600/00289636.jpg?3.0.138f",
@@ -214,7 +191,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 7,
+                            ProductId = 7,
                             Codigo = "b-020",
                             Descripcion = "Light, 2 lt",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00189500/00189594.jpg?3.0.138f",
@@ -224,7 +201,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 8,
+                            ProductId = 8,
                             Codigo = "f-103",
                             Descripcion = "Entera, sache 1 lt",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00170500/00170599.jpg?3.0.138f",
@@ -234,7 +211,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 9,
+                            ProductId = 9,
                             Codigo = "c-017",
                             Descripcion = "Caja 160 grm",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00499100/00499140.jpg?3.0.138f",
@@ -244,7 +221,7 @@ namespace Infraesctructure.Migrations
                         },
                         new
                         {
-                            ProductoId = 10,
+                            ProductId = 10,
                             Codigo = "l-022",
                             Descripcion = "Doble hoja, caja 100u",
                             Image = "https://static.cotodigital3.com.ar/sitios/fotos/full/00264600/00264677.jpg?3.0.138f",
@@ -254,63 +231,81 @@ namespace Infraesctructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Carrito", b =>
+            modelBuilder.Entity("Domain.Entities.ProductCart", b =>
                 {
-                    b.HasOne("Domain.Entities.Cliente", "Cliente")
-                        .WithMany("Carrito")
-                        .HasForeignKey("ClienteId")
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCart", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Cart", b =>
+                {
+                    b.HasOne("Domain.Entities.Client", "Client")
+                        .WithMany("Cart")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cliente");
+                    b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("Domain.Entities.CarritoProducto", b =>
+            modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.HasOne("Domain.Entities.Carrito", "Carrito")
-                        .WithMany("CarritoProducto")
-                        .HasForeignKey("CarritoId")
+                    b.HasOne("Domain.Entities.Cart", "Cart")
+                        .WithOne("Order")
+                        .HasForeignKey("Domain.Entities.Order", "CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Producto", "Producto")
-                        .WithMany("CarritoProducto")
-                        .HasForeignKey("ProductoId")
+                    b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ProductCart", b =>
+                {
+                    b.HasOne("Domain.Entities.Cart", "Cart")
+                        .WithMany("ProductCart")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Carrito");
-
-                    b.Navigation("Producto");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Orden", b =>
-                {
-                    b.HasOne("Domain.Entities.Carrito", "Carrito")
-                        .WithOne("Orden")
-                        .HasForeignKey("Domain.Entities.Orden", "CarritoId")
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("ProductCart")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Carrito");
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Carrito", b =>
+            modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
-                    b.Navigation("CarritoProducto");
-
-                    b.Navigation("Orden")
+                    b.Navigation("Order")
                         .IsRequired();
+
+                    b.Navigation("ProductCart");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Cliente", b =>
+            modelBuilder.Entity("Domain.Entities.Client", b =>
                 {
-                    b.Navigation("Carrito");
+                    b.Navigation("Cart");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Producto", b =>
+            modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Navigation("CarritoProducto");
+                    b.Navigation("ProductCart");
                 });
 #pragma warning restore 612, 618
         }

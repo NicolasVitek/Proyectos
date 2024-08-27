@@ -9,20 +9,20 @@ namespace Infraesctructure.Query
         //{
         //    using (var context = new AppDbContext())
         //    {
-        //        var query = from cl in context.Cliente
-        //                    join c in context.Carrito on cl.ClienteId equals c.ClienteId
-        //                    join o in context.Orden on c.CarritoId equals o.CarritoId
-        //                    join cp in context.CarritoProducto on c.CarritoId equals cp.CarritoId
-        //                    join p in context.Producto on cp.ProductoId equals p.ProductoId
+        //        var query = from cl in context.Client
+        //                    join c in context.Cart on cl.ClientId equals c.ClientId
+        //                    join o in context.Order on c.CartId equals o.CartId
+        //                    join cp in context.ProductCart on c.CartId equals cp.CartId
+        //                    join p in context.Product on cp.ProductId equals p.ProductId
         //                    select new SalesData
         //                    {
-        //                        NombreCliente = cl.Nombre,
-        //                        ApellidoCliente = cl.Apellido,
-        //                        NombreProducto = p.Nombre,
-        //                        PrecioProducto = p.Precio,
-        //                        CantidadProducto = cp.Cantidad,
-        //                        FechaOrden = o.Fecha,
-        //                        ProductoId = p.ProductoId
+        //                        NombreClient = cl.Nombre,
+        //                        ApellidoClient = cl.Apellido,
+        //                        NombreProduct = p.Nombre,
+        //                        PrecioProduct = p.Precio,
+        //                        CantidadProduct = cp.Cantidad,
+        //                        FechaOrder = o.Fecha,
+        //                        ProductId = p.ProductId
         //                    };
         //        return query.ToList();
         //    }
@@ -32,7 +32,7 @@ namespace Infraesctructure.Query
         //    string text = "";
         //    foreach (SalesData data in GetList())
         //    {
-        //        text = text + "El cliente " + data.NombreCliente + " " + data.ApellidoCliente + " compro " + data.CantidadProducto + " unidad/es de " + data.NombreProducto + " (Id: " + data.ProductoId + ")" + " a $" + data.PrecioProducto + " el dia " + data.FechaOrden + "\n";
+        //        text = text + "El cliente " + data.NombreClient + " " + data.ApellidoClient + " compro " + data.CantidadProduct + " unidad/es de " + data.NombreProduct + " (Id: " + data.ProductId + ")" + " a $" + data.PrecioProduct + " el dia " + data.FechaOrder + "\n";
         //    }
         //    return text;
         //}

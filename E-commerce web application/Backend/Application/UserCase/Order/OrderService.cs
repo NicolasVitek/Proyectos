@@ -4,9 +4,9 @@ using Application.Response;
 using Domain.Entities;
 using System.Xml.Schema;
 
-namespace Application.UserCase.Order
+namespace Application.UserCase
 {
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
         private readonly IOrderCommand _command;
         private readonly IOrderQuery _query;
@@ -17,13 +17,13 @@ namespace Application.UserCase.Order
             _query = query;
         }
 
-        public async Task<Orden> CreateOrder(int clientId)
+        public async Task<Order> CreateOrder(int clientId)
         {
-            _query.UpdateStateCar(clientId);
+            _query.UpdateStateCart(clientId);
             OrderProductData result = _query.CalculateTotal(clientId);
-            var order = new Orden
+            var order = new Order
             {
-                CarritoId = result.carId,
+                CartId = result.carId,
                 Fecha = DateTime.Now,
                 Total=result.total
             };
@@ -36,5 +36,6 @@ namespace Application.UserCase.Order
             return result.Select(db=>db);
 
         }
+
     }
 }

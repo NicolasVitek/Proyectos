@@ -1,6 +1,4 @@
-﻿
-
-namespace Application.UserCase.Order
+﻿namespace Application.UserCase
 {
     public class OrderProductData
     {

@@ -5,6 +5,6 @@ namespace Application.Interface
 {
     public interface IProductCommand
     {
-        public Task Delete(Producto product);
+        public Task Delete(Product product);
     }
 }

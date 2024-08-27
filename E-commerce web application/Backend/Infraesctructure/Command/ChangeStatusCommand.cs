@@ -10,7 +10,7 @@ namespace Infraesctructure.Command
         {
             //using (var context = new AppDbContext())
             //{
-            //    var carrito = context.Carrito.Where(c => c.ClienteId == clienteId).ToList(); ;
+            //    var carrito = context.Cart.Where(c => c.ClientId == clienteId).ToList(); ;
             //    carrito.ForEach(a => a.Estado = status);
             //    context.SaveChanges();
             //}

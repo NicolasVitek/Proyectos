@@ -12,7 +12,7 @@ namespace Infraesctructure.Command
         {
             _context = context;
         }
-        public async Task InsertClient(Cliente cliente)
+        public async Task InsertClient(Client cliente)
         {
             _context.Add(cliente);
             await _context.SaveChangesAsync();

@@ -2,8 +2,8 @@
 
 namespace Application.Interface
 {
-    public interface IProductCarQuery
+    public interface IProductCartQuery
     {
-        public CarritoProducto GetProductCar(int clientId, int productId);
+        public ProductCart GetProductCart(int clientId, int productId);
     }
 }

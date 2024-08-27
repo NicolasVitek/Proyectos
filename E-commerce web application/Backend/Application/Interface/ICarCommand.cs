@@ -2,9 +2,9 @@
 
 namespace Application.Interface
 {
-    public interface ICarCommand
+    public interface ICartCommand
     {
-        public Task InsertCar(Carrito car);
+        public Task InsertCart(Cart cart);
 
     }
 }

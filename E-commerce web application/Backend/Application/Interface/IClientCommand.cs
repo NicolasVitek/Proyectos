@@ -4,6 +4,6 @@ namespace Application.Interface
 {
     public interface IClientCommand
     {
-        Task InsertClient(Cliente cliente);
+        Task InsertClient(Client cliente);
     }
 }

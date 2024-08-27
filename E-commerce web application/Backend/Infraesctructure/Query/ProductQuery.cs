@@ -13,9 +13,9 @@ namespace Infraesctructure.Query
         {
             _context = context;
         }
-        public async Task<List<Producto>> GetAll(string name, bool sort)
+        public async Task<List<Product>> GetAll(string name, bool sort)
         {
-            var products = from p in _context.Producto
+            var products = from p in _context.Product
                            where p.Nombre == name
                            select p;
             switch (sort)
@@ -30,10 +30,10 @@ namespace Infraesctructure.Query
             return await (products.ToListAsync());
         }
 
-        public Producto GetProduct(int id)
+        public Product GetProduct(int id)
         {
-            var product = _context.Producto
-                .FirstOrDefault(p => p.ProductoId == id);
+            var product = _context.Product
+                .FirstOrDefault(p => p.ProductId == id);
             return product;
         }
     }

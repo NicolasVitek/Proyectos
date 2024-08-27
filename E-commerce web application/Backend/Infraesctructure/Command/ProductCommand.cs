@@ -14,7 +14,7 @@ namespace Infraesctructure.Command
             _context = context;
         }
 
-        public async Task Delete(Producto product)
+        public async Task Delete(Product product)
         {
             _context.Remove(product);
         }

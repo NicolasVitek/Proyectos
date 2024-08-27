@@ -601,11 +601,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\Documents\\Nicolas\\Proyectos\\E-commerce web application\\Backend\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\pc\\Documents\\Nicolas\\Proyectos\\E-commerce web application\\Backend\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Application\\obj\\",
+      "outputPath": "C:\\Users\\pc\\Documents\\Nicolas\\Proyectos\\E-commerce web application\\Backend\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -620,8 +620,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\pc\\Documents\\Nicolas\\Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\pc\\Documents\\Nicolas\\Proyectos\\E-commerce web application\\Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\pc\\Documents\\Nicolas\\Proyectos\\E-commerce web application\\Backend\\Domain\\Domain.csproj"
             }
           }
         }

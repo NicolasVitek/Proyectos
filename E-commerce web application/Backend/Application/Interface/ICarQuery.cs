@@ -3,8 +3,8 @@ using Application.Response;
 
 namespace Application.Interface
 {
-    public interface ICarQuery
+    public interface ICartQuery
     {
-        public Guid GetCarId(int clientId);
+        public Guid GetCartId(int clientId);
     }
 }

@@ -4,11 +4,15 @@ Antes de hacer una compra
 -El estado del carrito debe estar en 1
 update Carrito
 set Estado=1
-where ClienteId=1
-delete from Orden
+where ClientId=1
+delete from Order
 where CarritoId='96B6BC34-2436-45B6-E33B-08DAACBA517B'
-delete CarritoProducto
+delete CarritoProduct
 -El formato de las fechas para ver el balance es aaaa/mm/dd
+
+Para crear un carrito
+INSERT INTO cart (CartId, ClientId, Estado)
+VALUES ('96B6BC34-2436-45B6-E33B-08DAACBA517B', 1, 1);
 
 Secuencia para traer un producto de la lista
 
@@ -27,7 +31,7 @@ ClientController(Controllers) recibe el servicio y el id del cliente. Pasa el id
 
 Secuencia de ejecucion de metodos para mostrar el carrito
 
-btnModoProducto-->mostrarCarrito-->getProductoCarrito(renderCarrito)-->displayCarrito
+btnModoProduct-->mostrarCarrito-->getProductCarrito(renderCarrito)-->displayCarrito
 
 C:\Users\pc\OneDrive\Facultad\3\Proyecto software\Backend\TP1-REST-Vitek_Nicolas en consola
 donet build

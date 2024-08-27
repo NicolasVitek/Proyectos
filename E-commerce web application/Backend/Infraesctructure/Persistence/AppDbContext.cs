@@ -5,31 +5,31 @@ namespace Infraesctructure.Persistence
 {
     public class AppDbContext: DbContext
     {
-        public DbSet<Cliente> Cliente { get; set; }
-        public DbSet<Carrito> Carrito { get; set; }
-        public DbSet<Orden> Orden { get; set; }
-        public DbSet<Producto> Producto { get; set; }
-        public DbSet<CarritoProducto> CarritoProducto { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductCart> ProductCart { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cliente>(entity =>
+            modelBuilder.Entity<Client>(entity =>
             {
-                entity.ToTable("Cliente");
-                entity.HasKey(c => c.ClienteId);
+                entity.ToTable("Client");
+                entity.HasKey(c => c.ClientId);
                 entity.Property(t => t.DNI).HasColumnType("nvarchar(10)");
                 entity.Property(t => t.Nombre).HasColumnType("nvarchar(25)");
                 entity.Property(t => t.Apellido).HasColumnType("nvarchar(25)");
                 entity.Property(t => t.Direccion).HasColumnType("TEXT");
                 entity.Property(t => t.Telefono).HasColumnType("nvarchar(13)");
-                entity.Property(t => t.ClienteId).ValueGeneratedOnAdd();
+                entity.Property(t => t.ClientId).ValueGeneratedOnAdd();
                 entity.HasData(
-                    new Cliente
+                    new Client
                     {
-                        ClienteId = 1,
+                        ClientId = 1,
                         Nombre = "Nicolas",
                         Apellido = "Vitek",
                         DNI = 23344312,
@@ -37,14 +37,14 @@ namespace Infraesctructure.Persistence
                         Telefono = "4234-1231"
                     });
                 entity
-                .HasMany<Carrito>(cl => cl.Carrito)
-                .WithOne(c => c.Cliente);
+                .HasMany<Cart>(cl => cl.Cart)
+                .WithOne(c => c.Client);
 
             });
-            modelBuilder.Entity<Producto>().HasData(
+            modelBuilder.Entity<Product>().HasData(
             new
             {
-                ProductoId = 1,
+                ProductId = 1,
                 Nombre = "Alfajor",
                 Descripcion = "40 grm",
                 Marca = "Sol Serrano",
@@ -54,7 +54,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 2,
+                ProductId = 2,
                 Nombre = "Yerba mate",
                 Descripcion = "Edicion 1950, 1 kgrm",
                 Marca = "Amanda",
@@ -64,7 +64,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 3,
+                ProductId = 3,
                 Nombre = "Pure de tomate",
                 Descripcion = "520 grm",
                 Marca = "Corper",
@@ -74,7 +74,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 4,
+                ProductId = 4,
                 Nombre = "Cafe molido",
                 Descripcion = "20 grm",
                 Marca = "La Virginia",
@@ -84,7 +84,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 5,
+                ProductId = 5,
                 Nombre = "Arvejas",
                 Descripcion = "Bajo en sodio, 340 grm",
                 Marca = "Doña Pupa",
@@ -94,7 +94,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 6,
+                ProductId = 6,
                 Nombre = "Agua mineral",
                 Descripcion = "Sin gas, 2.5 lt",
                 Marca = "Bonaqua",
@@ -104,7 +104,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 7,
+                ProductId = 7,
                 Nombre = "Gaseosa",
                 Descripcion = "Light, 2 lt",
                 Marca = "Coca-Cola",
@@ -114,7 +114,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 8,
+                ProductId = 8,
                 Nombre = "Leche",
                 Descripcion = "Entera, sache 1 lt",
                 Marca = "La Serenisima",
@@ -124,7 +124,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 9,
+                ProductId = 9,
                 Nombre = "Cookie Sandwich",
                 Descripcion = "Caja 160 grm",
                 Marca = "Fudy",
@@ -134,7 +134,7 @@ namespace Infraesctructure.Persistence
             },
             new
             {
-                ProductoId = 10,
+                ProductId = 10,
                 Nombre = "Pañuelos",
                 Descripcion = "Doble hoja, caja 100u",
                 Marca = "Elite",
@@ -144,27 +144,27 @@ namespace Infraesctructure.Persistence
             }
             );
 
-            modelBuilder.Entity<Carrito>(entity =>
+            modelBuilder.Entity<Cart>(entity =>
             {
-                entity.ToTable("Carrito");
-                entity.HasKey(e => e.CarritoId);
-                entity.Property(t => t.CarritoId).ValueGeneratedOnAdd();
+                entity.ToTable("Cart");
+                entity.HasKey(e => e.CartId);
+                entity.Property(t => t.CartId).ValueGeneratedOnAdd();
                 entity.Property(c => c.Estado).HasColumnType("bit");
-                entity.HasOne<Orden>(c => c.Orden);
+                entity.HasOne<Order>(c => c.Order);
                 entity
-                .HasOne<Cliente>(c => c.Cliente)
-                .WithMany(cl => cl.Carrito)
-                .HasForeignKey(c => c.ClienteId);
+                .HasOne<Client>(c => c.Client)
+                .WithMany(cl => cl.Cart)
+                .HasForeignKey(c => c.ClientId);
                 entity
-                .HasOne<Orden>(c => c.Orden)
-                .WithOne(o => o.Carrito)
-                .HasForeignKey<Orden>(o => o.CarritoId);
+                .HasOne<Order>(c => c.Order)
+                .WithOne(o => o.Cart)
+                .HasForeignKey<Order>(o => o.CartId);
             });
-            modelBuilder.Entity<Producto>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                entity.ToTable("Producto");
-                entity.HasKey(p => p.ProductoId);
-                entity.Property(p => p.ProductoId).ValueGeneratedOnAdd();
+                entity.ToTable("Product");
+                entity.HasKey(p => p.ProductId);
+                entity.Property(p => p.ProductId).ValueGeneratedOnAdd();
                 entity.Property(p => p.Nombre).HasColumnType("TEXT");
                 entity.Property(p => p.Descripcion).HasColumnType("TEXT");
                 entity.Property(p => p.Marca).HasColumnType("nvarchar(25)");
@@ -172,30 +172,30 @@ namespace Infraesctructure.Persistence
                 entity.Property(p => p.Precio).HasColumnType("decimal(15,2)");
                 entity.Property(p => p.Image).HasColumnType("TEXT");
                 entity
-                .HasMany<CarritoProducto>(p => p.CarritoProducto)
-                .WithOne(cp => cp.Producto);
+                .HasMany<ProductCart>(p => p.ProductCart)
+                .WithOne(cp => cp.Product);
             });
-            modelBuilder.Entity<Orden>(entity =>
+            modelBuilder.Entity<Order>(entity =>
             {
-                entity.ToTable("Orden");
-                entity.HasKey(o => o.OrdenId);
-                entity.Property(p => p.OrdenId).ValueGeneratedOnAdd();
+                entity.ToTable("Order");
+                entity.HasKey(o => o.OrderId);
+                entity.Property(p => p.OrderId).ValueGeneratedOnAdd();
                 entity.Property(o => o.Total).HasColumnType("decimal(15,2)");
                 entity.Property(o => o.Fecha).HasColumnType("datetime");
             });
-            modelBuilder.Entity<CarritoProducto>(entity =>
+            modelBuilder.Entity<ProductCart>(entity =>
             {
-                entity.ToTable("CarritoProducto");
-                entity.HasKey(cp => new { cp.CarritoId, cp.ProductoId });
+                entity.ToTable("ProductCart");
+                entity.HasKey(cp => new { cp.CartId, cp.ProductId });
                 entity.Property(o => o.Cantidad).HasColumnType("int");
                 entity
-                .HasOne<Carrito>(cp => cp.Carrito)
-                .WithMany(c => c.CarritoProducto)
-                .HasForeignKey(cp => cp.CarritoId);
+                .HasOne<Cart>(cp => cp.Cart)
+                .WithMany(c => c.ProductCart)
+                .HasForeignKey(cp => cp.CartId);
                 entity
-                .HasOne<Producto>(cp => cp.Producto)
-                .WithMany(p => p.CarritoProducto)
-                .HasForeignKey(cp => cp.ProductoId);
+                .HasOne<Product>(cp => cp.Product)
+                .WithMany(p => p.ProductCart)
+                .HasForeignKey(cp => cp.ProductId);
             });
         }
     }

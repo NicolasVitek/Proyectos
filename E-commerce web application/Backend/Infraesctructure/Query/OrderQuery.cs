@@ -1,6 +1,6 @@
 ﻿using Application.Interface;
 using Application.Response;
-using Application.UserCase.Order;
+using Application.UserCase;
 using Infraesctructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,11 +14,11 @@ namespace Infraesctructure.Query
         {
             _context = context;
         }
-        public void UpdateStateCar(int clientId)
+        public void UpdateStateCart(int clientId)
         {
-            var query = from cl in _context.Cliente
-                        where cl.ClienteId == clientId
-                        join c in _context.Carrito on cl.ClienteId equals c.ClienteId
+            var query = from cl in _context.Client
+                        where cl.ClientId == clientId
+                        join c in _context.Cart on cl.ClientId equals c.ClientId
                         where c.Estado == true
                         select c;
             query.ToList().FirstOrDefault().Estado = false;
@@ -28,17 +28,17 @@ namespace Infraesctructure.Query
         {
             Guid carId = new Guid();
             double total = 0;
-            var query = from cl in _context.Cliente
-                        where cl.ClienteId == clientId
-                        join c in _context.Carrito on cl.ClienteId equals c.ClienteId
+            var query = from cl in _context.Client
+                        where cl.ClientId == clientId
+                        join c in _context.Cart on cl.ClientId equals c.ClientId
                         where c.Estado==false
-                        join cp in _context.CarritoProducto on c.CarritoId equals cp.CarritoId
-                        join p in _context.Producto on cp.ProductoId equals p.ProductoId
+                        join cp in _context.ProductCart on c.CartId equals cp.CartId
+                        join p in _context.Product on cp.ProductId equals p.ProductId
                         select new OrderProductData
                         {
                             price=p.Precio,
                             cant=cp.Cantidad,
-                            carId=c.CarritoId
+                            carId=c.CartId
                         };
             var list = query.ToList();
             foreach (OrderProductData product in list)
@@ -55,11 +55,11 @@ namespace Infraesctructure.Query
         }
         public async Task<List<DataBalanceResponse>> GetBalance(DateTime desde, DateTime hasta)
         {
-            var query = from p in _context.Producto
-                        join cp in _context.CarritoProducto on p.ProductoId equals cp.ProductoId
-                        join c in _context.Carrito on cp.CarritoId equals c.CarritoId
-                        join o in _context.Orden on c.CarritoId equals o.CarritoId
-                        join cl in _context.Cliente on c.ClienteId equals cl.ClienteId
+            var query = from p in _context.Product
+                        join cp in _context.ProductCart on p.ProductId equals cp.ProductId
+                        join c in _context.Cart on cp.CartId equals c.CartId
+                        join o in _context.Order on c.CartId equals o.CartId
+                        join cl in _context.Client on c.ClientId equals cl.ClientId
                         where o.Fecha> desde & o.Fecha<hasta
                         select new DataBalanceResponse
                         {
