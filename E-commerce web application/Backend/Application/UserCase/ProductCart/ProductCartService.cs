@@ -23,7 +23,7 @@ namespace Application.UserCase.cart
             {
                 CartId = carId,
                 ProductId = request.productId,
-                Cantidad = request.amount,
+                Amount = request.amount,
             };
             await _command.InsertProductCart(productCart);
             return productCart;
@@ -42,7 +42,7 @@ namespace Application.UserCase.cart
             {
                 CartId = carId,
                 ProductId = request.productId,
-                Cantidad = request.amount,
+                Amount = request.amount,
             };
             await _command.UpdateProductCart(productCart);
             return productCart;

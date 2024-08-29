@@ -7,12 +7,12 @@ namespace Application.UserCase.Product
         public ProductData(int id, int cantidad, double precio)
         {
             Id = id;
-            Cantidad = cantidad;
-            Precio = precio;
+            Amount = cantidad;
+            Price = precio;
         }
 
         public int Id { get; set; }
-        public int Cantidad { get; set; }
-        public double Precio { get; set; }
+        public int Amount { get; set; }
+        public double Price { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Application.UserCase
             var order = new Order
             {
                 CartId = result.carId,
-                Fecha = DateTime.Now,
+                Date = DateTime.Now,
                 Total=result.total
             };
             await _command.InsertOrder(order);

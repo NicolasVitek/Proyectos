@@ -1,18 +1,23 @@
-﻿namespace Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Entities
 {
     public class Cart
     {
-        public Cart(int clientId, bool estado)
+        [Column("cartId")]
+        public Guid CartId { get; set; }
+        [Column("clientId")]
+        public int ClientId { get; set; }
+        [Column("status")]
+        public bool Status { get; set; }
+        public Client? Client { get; set; }
+        public Order? Order { get; set; }
+        public ICollection<ProductCart> ProductCart { get; set; }
+        public Cart(int clientId, bool status)
         {
             ClientId = clientId;
-            Estado = estado;
+            Status = status;
         }
-
-        public Guid CartId { get; set; }
-        public int ClientId { get; set; }
-        public bool Estado { get; set; }
-        public Client Client { get; set; }
-        public Order Order { get; set; }
-        public ICollection<ProductCart> ProductCart { get; set; }
+        public Cart(){}
     }
 }

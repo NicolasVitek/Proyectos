@@ -19,11 +19,11 @@ namespace Application.UserCase
         {
             var client = new Client
             {
-                Nombre = request.name,
-                Apellido = request.lastName,
-                Direccion = request.address,
+                FirstName = request.name,
+                LastName = request.lastName,
+                Address = request.address,
                 DNI = request.dni,
-                Telefono = request.phoneNumber
+                PhoneNumber = request.phoneNumber
             };
             await _command.InsertClient(client);
             return client;
@@ -39,11 +39,11 @@ namespace Application.UserCase
             var client = _query.GetClient(id);
             return Task.FromResult(new ClientResponse
             {
-                name = client.Nombre,
-                lastname = client.Apellido,
+                name = client.FirstName,
+                lastname = client.LastName,
                 dni = client.DNI,
-                phoneNumber = client.Telefono,
-                address = client.Direccion
+                phoneNumber = client.PhoneNumber,
+                address = client.Address
             });
         }
     }

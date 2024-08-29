@@ -16,12 +16,12 @@ namespace Infraesctructure.Query
         //                    join p in context.Product on cp.ProductId equals p.ProductId
         //                    select new SalesData
         //                    {
-        //                        NombreClient = cl.Nombre,
-        //                        ApellidoClient = cl.Apellido,
-        //                        NombreProduct = p.Nombre,
-        //                        PrecioProduct = p.Precio,
-        //                        CantidadProduct = cp.Cantidad,
-        //                        FechaOrder = o.Fecha,
+        //                        NameClient = cl.FirstName,
+        //                        LastNameClient = cl.LastName,
+        //                        FirstNameProduct = p.Name,
+        //                        PriceProduct = p.Price,
+        //                        AmountProduct = cp.Amount,
+        //                        DateOrder = o.Date,
         //                        ProductId = p.ProductId
         //                    };
         //        return query.ToList();
@@ -32,7 +32,7 @@ namespace Infraesctructure.Query
         //    string text = "";
         //    foreach (SalesData data in GetList())
         //    {
-        //        text = text + "El cliente " + data.NombreClient + " " + data.ApellidoClient + " compro " + data.CantidadProduct + " unidad/es de " + data.NombreProduct + " (Id: " + data.ProductId + ")" + " a $" + data.PrecioProduct + " el dia " + data.FechaOrder + "\n";
+        //        text = text + "El cliente " + data.NameClient + " " + data.LastNameClient + " compro " + data.AmountProduct + " unidad/es de " + data.NameProduct + " (Id: " + data.ProductId + ")" + " a $" + data.PriceProduct + " el dia " + data.DateOrder + "\n";
         //    }
         //    return text;
         //}

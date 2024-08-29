@@ -3,7 +3,7 @@ Antes de hacer una compra
 -El local storage debe estar vacio
 -El estado del carrito debe estar en 1
 update Carrito
-set Estado=1
+set Status=1
 where ClientId=1
 delete from Order
 where CarritoId='96B6BC34-2436-45B6-E33B-08DAACBA517B'
@@ -11,7 +11,7 @@ delete CarritoProduct
 -El formato de las fechas para ver el balance es aaaa/mm/dd
 
 Para crear un carrito
-INSERT INTO cart (CartId, ClientId, Estado)
+INSERT INTO cart (CartId, ClientId, Status)
 VALUES ('96B6BC34-2436-45B6-E33B-08DAACBA517B', 1, 1);
 
 Secuencia para traer un producto de la lista
@@ -40,7 +40,7 @@ dotnet run
 C:\Users\pc\Documents\Nicolas\Backend\Infraesctructure
 dotnet ef database update 0
 dotnet ef migrations remove
-dotnet ef migrations add MyMigration
+dotnet ef migrations add 20240829_AddTables
 dotnet ef database update
 
 

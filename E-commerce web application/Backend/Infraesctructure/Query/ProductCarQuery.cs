@@ -22,7 +22,7 @@ namespace Infraesctructure.Query
                               {
                                   CartId = cp.CartId,
                                   ProductId = cp.ProductId,
-                                  Cantidad = cp.Cantidad
+                                  Amount = cp.Amount
                               };
             var list = productCart.ToList();
             return list.First();

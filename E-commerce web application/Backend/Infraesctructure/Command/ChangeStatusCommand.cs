@@ -11,7 +11,7 @@ namespace Infraesctructure.Command
             //using (var context = new AppDbContext())
             //{
             //    var carrito = context.Cart.Where(c => c.ClientId == clienteId).ToList(); ;
-            //    carrito.ForEach(a => a.Estado = status);
+            //    carrito.ForEach(a => a.Status = status);
             //    context.SaveChanges();
             //}
         }

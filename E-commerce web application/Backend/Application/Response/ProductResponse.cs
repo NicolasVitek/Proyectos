@@ -4,11 +4,11 @@ namespace Application.Response
     public class ProductResponse
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Marca { get; set; }
-        public string Codigo { get; set; }
-        public double Precio { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Brand { get; set; }
+        public string Code { get; set; }
+        public double Price { get; set; }
         public string Image { get; set; }
     }
 }

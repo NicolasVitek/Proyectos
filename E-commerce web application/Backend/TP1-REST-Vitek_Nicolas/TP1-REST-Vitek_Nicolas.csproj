@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TP1_REST_Vitek_Nicolas</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

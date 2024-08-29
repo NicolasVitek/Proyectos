@@ -18,12 +18,12 @@ namespace Application.UserCase.Product
             return result.Select(p=> new ProductResponse
             {
                 Id = p.ProductId,
-                Nombre =p.Nombre,
-                Marca=p.Marca,
-                Codigo=p.Codigo,
-                Precio=p.Precio,
+                Name =p.Name,
+                Brand=p.Brand,
+                Code=p.Code,
+                Price=p.Price,
                 Image=p.Image,
-                Descripcion=p.Descripcion
+                Description=p.Description
                 
             });
         }
@@ -33,12 +33,12 @@ namespace Application.UserCase.Product
             return Task.FromResult(new ProductResponse
             {
                 Id=product.ProductId,
-                Nombre=product.Nombre,
-                Marca=product.Marca,
-                Precio=product.Precio,
-                Codigo=product.Codigo,
+                Name=product.Name,
+                Brand=product.Brand,
+                Price=product.Price,
+                Code=product.Code,
                 Image=product.Image,
-                Descripcion=product.Descripcion
+                Description=product.Description
             });
         }
     }

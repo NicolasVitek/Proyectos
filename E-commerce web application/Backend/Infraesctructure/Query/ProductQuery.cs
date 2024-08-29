@@ -16,15 +16,15 @@ namespace Infraesctructure.Query
         public async Task<List<Product>> GetAll(string name, bool sort)
         {
             var products = from p in _context.Product
-                           where p.Nombre == name
+                           where p.Name == name
                            select p;
             switch (sort)
             {
                 case false:
-                    products = products.OrderByDescending(p => p.Precio);
+                    products = products.OrderByDescending(p => p.Price);
                     break;
                 case true:
-                    products = products.OrderBy(p => p.Precio);
+                    products = products.OrderBy(p => p.Price);
                     break;
             }
             return await (products.ToListAsync());

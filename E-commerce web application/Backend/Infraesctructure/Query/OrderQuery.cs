@@ -19,9 +19,9 @@ namespace Infraesctructure.Query
             var query = from cl in _context.Client
                         where cl.ClientId == clientId
                         join c in _context.Cart on cl.ClientId equals c.ClientId
-                        where c.Estado == true
+                        where c.Status == true
                         select c;
-            query.ToList().FirstOrDefault().Estado = false;
+            query.ToList().FirstOrDefault().Status = false;
             _context.SaveChanges();
         }
         public OrderProductData CalculateTotal(int clientId)
@@ -31,13 +31,13 @@ namespace Infraesctructure.Query
             var query = from cl in _context.Client
                         where cl.ClientId == clientId
                         join c in _context.Cart on cl.ClientId equals c.ClientId
-                        where c.Estado==false
+                        where c.Status==false
                         join cp in _context.ProductCart on c.CartId equals cp.CartId
                         join p in _context.Product on cp.ProductId equals p.ProductId
                         select new OrderProductData
                         {
-                            price=p.Precio,
-                            cant=cp.Cantidad,
+                            price=p.Price,
+                            cant=cp.Amount,
                             carId=c.CartId
                         };
             var list = query.ToList();
@@ -60,16 +60,16 @@ namespace Infraesctructure.Query
                         join c in _context.Cart on cp.CartId equals c.CartId
                         join o in _context.Order on c.CartId equals o.CartId
                         join cl in _context.Client on c.ClientId equals cl.ClientId
-                        where o.Fecha> desde & o.Fecha<hasta
+                        where o.Date> desde & o.Date<hasta
                         select new DataBalanceResponse
                         {
-                            nameClient=cl.Nombre,
-                            lastNameClient=cl.Apellido,
-                            productName = p.Nombre,
-                            cantProduct = cp.Cantidad,
-                            subTotal=cp.Cantidad*p.Precio,
+                            nameClient=cl.FirstName,
+                            lastNameClient=cl.LastName,
+                            productName = p.Name,
+                            cantProduct = cp.Amount,
+                            subTotal=cp.Amount*p.Price,
                             income = o.Total,
-                            priceProduct=p.Precio
+                            priceProduct=p.Price
                         };
             return await query.ToListAsync();
         }
