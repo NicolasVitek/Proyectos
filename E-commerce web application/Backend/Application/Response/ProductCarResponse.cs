@@ -1,10 +1,9 @@
-﻿
-namespace Application.Response
+﻿namespace Application.Response
 {
     public class ProductCartResponse
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public int cantidad { get; set; }
+        public Guid CartId { get; set; }
+        public int ProductId { get; set; }
+        public int Amount { get; set; }
     }
 }

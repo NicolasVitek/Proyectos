@@ -2,9 +2,9 @@
 {
     public class OrderProductData
     {
-        public int cant;
-        public double price;
-        public Guid carId;
-        public double total;
+        public Guid CartId{ get; set; }= Guid.NewGuid();;
+        public int Amount{ get; set; };
+        public double Price{ get; set; };
+        public double Total{ get; set; };
     }
 }

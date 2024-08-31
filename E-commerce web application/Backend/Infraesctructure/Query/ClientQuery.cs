@@ -13,19 +13,19 @@ namespace Infraesctructure.Query
         {
             _context = context;
         }
-        public Client GetClient(int id)
+        public Client? GetClient(int id)
         {
             var client = _context.Client
                 .FirstOrDefault(c => c.ClientId == id);
             return client;
         }
-        public bool DniValidation(int dni)
+        public bool DuplicateDni(int dni)
         {
             List<Client> list;
             var query = from cl in _context.Client
                         where cl.DNI == dni
                         select cl;
-            list = query.ToList();
+            list = [.. query];
 
             if (list.Count == 0)
             {

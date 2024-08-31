@@ -1,5 +1,4 @@
-﻿
-using Application.Models;
+﻿using Application.Models;
 using Application.Response;
 using Domain.Entities;
 
@@ -7,8 +6,10 @@ namespace Application.Interface
 {
     public interface IClientService
     {
-        Task<Client> CreateClient(CreateClientRequest request);
+        Task<Client> CreateClient(ClientRequest request);
         Task<ClientResponse> GetAll(int id);
-        public bool DniValidation(int dni);
+        public bool DuplicateDni(int dni);
+
+        public bool InvalidDni(int dni);
     }
 }

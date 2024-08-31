@@ -1,8 +1,7 @@
-﻿using Application.Interface;
-using Application.Models;
+﻿using Application.Exceptions;
+using Application.Interface;
 using Application.Response;
 using Domain.Entities;
-using System.Xml.Schema;
 
 namespace Application.UserCase
 {
@@ -10,32 +9,36 @@ namespace Application.UserCase
     {
         private readonly IOrderCommand _command;
         private readonly IOrderQuery _query;
-
         public OrderService(IOrderCommand command, IOrderQuery query)
         {
             _command = command;
             _query = query;
         }
-
         public async Task<Order> CreateOrder(int clientId)
         {
-            _query.UpdateStateCart(clientId);
+            //_query.UpdateStatusCart(clientId);
             OrderProductData result = _query.CalculateTotal(clientId);
             var order = new Order
             {
-                CartId = result.carId,
+                CartId = result.CartId,
                 Date = DateTime.Now,
-                Total=result.total
+                Total = result.Total
             };
+            Console.WriteLine(order.CartId);
+            Console.WriteLine(order.Date);
+            Console.WriteLine(order.Total);
             await _command.InsertOrder(order);
             return order;
         }
         public async Task<IEnumerable<DataBalanceResponse>> ShowBalance(DateTime from, DateTime to)
         {
+            if (from == to)
+            {
+                throw new SameDateException();
+            }
             var result = await _query.GetBalance(from, to);
-            return result.Select(db=>db);
-
+            //return result.Select(db=>db);
+            return result;
         }
-
     }
 }

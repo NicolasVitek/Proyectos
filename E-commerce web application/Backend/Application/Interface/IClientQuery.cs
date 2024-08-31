@@ -4,7 +4,7 @@ namespace Application.Interface
 {
     public interface IClientQuery
     {
-        public Client GetClient(int id);
-        bool DniValidation(int dni);
+        public Client? GetClient(int id);
+        bool DuplicateDni(int dni);
     }
 }

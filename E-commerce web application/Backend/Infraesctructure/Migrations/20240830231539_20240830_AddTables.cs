@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infraesctructure.Migrations
 {
     /// <inheritdoc />
-    public partial class _20240829_AddTables : Migration
+    public partial class _20240830_AddTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,10 +20,10 @@ namespace Infraesctructure.Migrations
                     clientId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     dni = table.Column<int>(type: "nvarchar(10)", nullable: false),
-                    firstName = table.Column<string>(type: "nvarchar(25)", nullable: false),
-                    lastName = table.Column<string>(type: "nvarchar(25)", nullable: false),
-                    address = table.Column<string>(type: "TEXT", nullable: false),
-                    phoneNumber = table.Column<string>(type: "nvarchar(13)", nullable: false)
+                    firstName = table.Column<string>(type: "nvarchar(25)", nullable: true),
+                    lastName = table.Column<string>(type: "nvarchar(25)", nullable: true),
+                    address = table.Column<string>(type: "TEXT", nullable: true),
+                    phoneNumber = table.Column<string>(type: "nvarchar(13)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,7 +72,7 @@ namespace Infraesctructure.Migrations
                 columns: table => new
                 {
                     orderId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CartId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    cartId = table.Column<Guid>(type: "TEXT", nullable: false),
                     date = table.Column<DateTime>(type: "datetime", nullable: false),
                     total = table.Column<double>(type: "decimal(15,2)", nullable: false)
                 },
@@ -80,8 +80,8 @@ namespace Infraesctructure.Migrations
                 {
                     table.PrimaryKey("PK_Order", x => x.orderId);
                     table.ForeignKey(
-                        name: "FK_Order_Cart_CartId",
-                        column: x => x.CartId,
+                        name: "FK_Order_Cart_cartId",
+                        column: x => x.cartId,
                         principalTable: "Cart",
                         principalColumn: "cartId",
                         onDelete: ReferentialAction.Cascade);
@@ -140,9 +140,9 @@ namespace Infraesctructure.Migrations
                 column: "clientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CartId",
+                name: "IX_Order_cartId",
                 table: "Order",
-                column: "CartId",
+                column: "cartId",
                 unique: true);
 
             migrationBuilder.CreateIndex(

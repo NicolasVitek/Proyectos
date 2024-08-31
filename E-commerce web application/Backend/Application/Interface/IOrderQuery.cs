@@ -5,7 +5,7 @@ namespace Application.Interface
 {
     public interface IOrderQuery
     {
-        public void UpdateStateCart(int clientId);
+        public void UpdateStatusCart(int clientId);
         public OrderProductData CalculateTotal(int clientId);
         public Task<List<DataBalanceResponse>> GetBalance(DateTime from, DateTime to);
     }

@@ -4,7 +4,7 @@ using Domain.Entities;
 
 namespace Application.UserCase.cart
 {
-    public class ProductCartService: IProductCartService
+    public class ProductCartService : IProductCartService
     {
         private readonly IProductCartQuery _query;
         private readonly IProductCartCommand _command;
@@ -18,31 +18,43 @@ namespace Application.UserCase.cart
         }
         public async Task<ProductCart> CreateProductCart(ProductCartRequest request)
         {
-            Guid carId = _carQuery.GetCartId(request.clientID);
+            Guid cartId = _carQuery.GetCartId(request.ClientId);
+            if (cartId == Guid.Empty)
+            {
+                throw new NonExistentIDException();
+            }
             var productCart = new ProductCart
             {
-                CartId = carId,
-                ProductId = request.productId,
-                Amount = request.amount,
+                CartId = cartId,
+                ProductId = request.ProductId,
+                Amount = request.Amount,
             };
             await _command.InsertProductCart(productCart);
             return productCart;
         }
         public async Task<ProductCart> DeleteProductCart(int clientId, int productId)
         {
-            var productCart= _query.GetProductCart(clientId, productId);
+            var productCart = _query.GetProductCart(clientId, productId);
+            if (productCart == null)
+            {
+                throw new NonExistentIDException();
+            }
             await _command.DeletedProductCart(productCart);
             return productCart;
         }
 
         public async Task<ProductCart> UpdateProductCart(ProductCartRequest request)
         {
-            Guid carId = _carQuery.GetCartId(request.clientID);
+            Guid cartId = _carQuery.GetCartId(request.ClientId);
+            if (cartId == Guid.Empty)
+            {
+                throw new NonExistentIDException();
+            }
             var productCart = new ProductCart
             {
-                CartId = carId,
-                ProductId = request.productId,
-                Amount = request.amount,
+                CartId = cartId,
+                ProductId = request.ProductId,
+                Amount = request.Amount,
             };
             await _command.UpdateProductCart(productCart);
             return productCart;

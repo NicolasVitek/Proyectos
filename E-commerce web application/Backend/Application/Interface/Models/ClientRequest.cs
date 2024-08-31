@@ -1,6 +1,6 @@
-﻿namespace Application.Response
+﻿namespace Application.Models
 {
-    public class ClientResponse
+    public class ClientRequest
     {
         public int DNI { get; set; }
         public string? FirstName { get; set; }

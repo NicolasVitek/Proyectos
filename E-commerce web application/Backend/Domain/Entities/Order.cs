@@ -6,6 +6,7 @@ namespace Domain.Entities
     {
         [Column("orderId")]
         public Guid OrderId { get; set; }
+        [Column("cartId")]
         public Guid CartId { get; set; }
         [Column("date")]
         public DateTime Date { get; set; }

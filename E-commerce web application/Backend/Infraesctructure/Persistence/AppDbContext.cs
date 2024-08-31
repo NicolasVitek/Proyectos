@@ -148,7 +148,6 @@ namespace Infraesctructure.Persistence
             {
                 entity.ToTable("Cart");
                 entity.HasKey(e => e.CartId);
-                entity.Property(t => t.CartId).ValueGeneratedOnAdd();
                 entity.Property(c => c.Status).HasColumnType("bit");
                 entity.HasOne<Order>(c => c.Order);
                 entity

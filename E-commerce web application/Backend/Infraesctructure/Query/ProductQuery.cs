@@ -27,10 +27,10 @@ namespace Infraesctructure.Query
                     products = products.OrderBy(p => p.Price);
                     break;
             }
-            return await (products.ToListAsync());
+            return await products.ToListAsync();
         }
 
-        public Product GetProduct(int id)
+        public Product? GetProduct(int id)
         {
             var product = _context.Product
                 .FirstOrDefault(p => p.ProductId == id);

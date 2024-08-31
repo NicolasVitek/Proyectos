@@ -12,7 +12,7 @@ namespace Infraesctructure.Query
         {
             _context = context;
         }
-        public ProductCart GetProductCart(int clientId, int productId)
+        public ProductCart? GetProductCart(int clientId, int productId)
         {
             var productCart = from c in _context.Cart
                               where c.ClientId == clientId
@@ -24,8 +24,7 @@ namespace Infraesctructure.Query
                                   ProductId = cp.ProductId,
                                   Amount = cp.Amount
                               };
-            var list = productCart.ToList();
-            return list.First();
+            return productCart.FirstOrDefault();
         }
     }
 }

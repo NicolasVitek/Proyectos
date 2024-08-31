@@ -15,24 +15,31 @@ namespace Application.UserCase.Product
         public async Task<IEnumerable<ProductResponse>> GetAll(string name, bool sort)
         {
             var result = await _query.GetAll(name, sort);
+            if (result.Count==0)
+            {
+                throw new NonExistentNameException();
+            }
             return result.Select(p=> new ProductResponse
             {
-                Id = p.ProductId,
+                ProductId = p.ProductId,
                 Name =p.Name,
                 Brand=p.Brand,
                 Code=p.Code,
                 Price=p.Price,
                 Image=p.Image,
                 Description=p.Description
-                
             });
         }
         public Task<ProductResponse> GetProduct(int id)
         {
             var product = _query.GetProduct(id);
+            if (product==null)
+            {
+                throw new NonExistentIDException();
+            }
             return Task.FromResult(new ProductResponse
             {
-                Id=product.ProductId,
+                ProductId=product.ProductId,
                 Name=product.Name,
                 Brand=product.Brand,
                 Price=product.Price,

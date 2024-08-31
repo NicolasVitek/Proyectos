@@ -1,14 +1,13 @@
-﻿
-namespace Application.Response
+﻿namespace Application.Response
 {
     public class DataBalanceResponse
     {
-        public string nameClient { get; set; }
-        public string lastNameClient { get; set; }
-        public double income { get; set; }
-        public double subTotal { get; set; }
-        public string productName { get; set; }
-        public int cantProduct { get; set; }
-        public double priceProduct { get; set; }
+        public string? FirstNameClient { get; set; }
+        public string? LastNameClient { get; set; }
+        public double? Total { get; set; }
+        public double? SubTotal { get; set; }
+        public string? ProductName { get; set; }
+        public int? ProductAmount { get; set; }
+        public double? ProductPrice { get; set; }
     }
 }

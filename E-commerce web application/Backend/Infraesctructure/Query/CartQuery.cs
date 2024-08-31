@@ -14,11 +14,10 @@ namespace Infraesctructure.Query
 
         public Guid GetCartId(int clientId)
         {
-            var query = from c in _context.Cart
-                        where c.ClientId == clientId && c.Status == true
-                        select c.CartId;
-            var list = query.ToList();
-            return list.First();
+            return _context.Cart
+                           .Where(c => c.ClientId == clientId && c.Status)
+                           .Select(c => c.CartId)
+                           .FirstOrDefault();
         }
     }
 }

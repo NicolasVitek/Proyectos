@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraesctructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240829152143_20240829_AddTables")]
-    partial class _20240829_AddTables
+    [Migration("20240830231539_20240830_AddTables")]
+    partial class _20240830_AddTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,6 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("clientId");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("address");
 
@@ -59,17 +58,14 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("dni");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasColumnName("firstName");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasColumnName("lastName");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(13)")
                         .HasColumnName("phoneNumber");
 
@@ -97,7 +93,8 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("orderId");
 
                     b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("cartId");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime")

@@ -47,7 +47,6 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("clientId");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("address");
 
@@ -56,17 +55,14 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("dni");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasColumnName("firstName");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasColumnName("lastName");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(13)")
                         .HasColumnName("phoneNumber");
 
@@ -94,7 +90,8 @@ namespace Infraesctructure.Migrations
                         .HasColumnName("orderId");
 
                     b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("cartId");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime")

@@ -9,22 +9,22 @@ namespace Domain.Entities
         [Column("dni")]
         public int DNI { get; set; }
         [Column("firstName")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         [Column("lastName")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         [Column("address")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
         [Column("phoneNumber")]
-        public string PhoneNumber { get; set; }
-        public ICollection<Cart> Cart { get; set; }
-        public Client() { }
-        public Client(int dni, string nombre, string apellido, string direccion, string telefono)
+        public string? PhoneNumber { get; set; }
+        public ICollection<Cart>? Cart { get; set; }
+        public Client(int dni, string firstName, string lastName, string address, string phoneNumber)
         {
             DNI = dni;
-            FirstName = nombre;
-            LastName = apellido;
-            Address = direccion;
-            PhoneNumber = telefono;
+            FirstName = firstName;
+            LastName = lastName;
+            Address = address;
+            PhoneNumber = phoneNumber;
         }
+        public Client(){}
     }
 }
