@@ -1,0 +1,68 @@
+@import url("./productCar.css");
+@import url("./clientForm.css");
+#divProductos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1px;
+  background-color: rgb(187, 178, 176);
+  grid-auto-columns: 1fr;
+}
+#btnProducto {
+  margin-right: 5px;
+  display: grid;
+  grid-template-columns: 50px 50px 50px 90px 100px;
+}
+.table {
+  margin-top: 1%;
+}
+#buscarProducto {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+#lblNombre {
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px;
+  align-self: center;
+  background-color: blanchedalmond;
+}
+#lblPrecio {
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px;
+  align-self: center;
+  background-color: blueviolet;
+}
+#img-producto {
+  height: 40px;
+  width: 40px;
+  align-self: center;
+}
+
+.btnPrimary {
+  background-color: #2069f1;
+  border: 2px black;
+  border-style: solid;
+  text-align: center;
+  font-weight: bold;
+}
+
+.separador {
+  background-color: #f13030;
+}
+.card {
+  margin: 10%;
+}
+#alerta {
+  width: 290px;
+  padding: 10px;
+  margin: 0%;
+  display: grid;
+  grid-template-columns: 250px 40px;
+}
+#seccionBalance{
+  display: grid;
+}
+

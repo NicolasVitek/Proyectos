@@ -35,7 +35,6 @@ namespace TP1_REST_Vitek_Nicolas.Controllers
                 return BadRequest(ex.message);
             }
         }
-        
         /// <summary>
         /// Returns a list of purchase orders within a specified date range.
         /// </summary>

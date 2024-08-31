@@ -1,7 +1,7 @@
-const Urlbase="https://localhost:7062/api/Producto"
-const base="https://localhost:7062/api/Carrito"
-const urlOrden="https://localhost:7062/api/Orden"
-const urlCliente="https://localhost:7062/api/Cliente"
+const Urlbase="https://localhost:7062/api/Product"
+const base="https://localhost:7062/api/Cart"
+const urlOrden="https://localhost:7062/api/Order"
+const urlCliente="https://localhost:7062/api/Client"
 
 import { deployAlert } from "../component/carrito.js"
 import { ProductoCarrito } from "../component/productosCarrito.js"
@@ -31,18 +31,19 @@ export const crearCliente=async (dni, name, lastName, address, phoneNumber)=>{
     })
 }
 
-export const getProducto=async (id, callback)=>{
-    await fetch(`${Urlbase}/${id}`)
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()   
+export const getProducto = async (id) => {
+    try {
+        const response = await fetch(`${Urlbase}/${id}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching product with id ${id}: ${response.statusText}`);
         }
-    })
-    .then(body=>{
-        callback(body);
-    })
-}
+        const productData = await response.json();
+        return productData;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
 export const getProductoCarrito=async (productoId, cantidad, callback)=>{
     await fetch(`${Urlbase}/${productoId}`)
     .then((httpResponse)=>
@@ -157,7 +158,7 @@ export const showBalance=async (desde, hasta, callback)=>{
         }
     })
     .then(body=>{
-        callback(body.$values);
+        callback(body.values);
     })
 }
 export const showOrder=async (callback)=>{ 

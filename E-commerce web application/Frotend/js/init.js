@@ -1,5 +1,5 @@
-import { IndexRender} from "./container/index.js"
+import { initializeProductList } from "../js/Functions/Product.js"
 
-window.onload=()=>{
-    IndexRender(); 
-}
+document.addEventListener("DOMContentLoaded", () => {
+    initializeProductList();
+});

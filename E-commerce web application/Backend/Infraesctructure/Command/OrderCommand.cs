@@ -14,8 +14,16 @@ namespace Infraesctructure.Command
         }
         public async Task InsertOrder(Order order)
         {
-             _context.Add(order);
-            await _context.SaveChangesAsync();
+        var client = await _context.Cart.FindAsync(order.CartId);
+         if (client == null)
+        {
+        throw new Exception("Cliente no encontrado.");
+        }
+    // Asignar la entidad relacionada
+        order.Cart = client;
+
+        _context.Add(order);
+        await _context.SaveChangesAsync();
         }
     }
 }

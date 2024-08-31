@@ -16,7 +16,7 @@ namespace Application.UserCase
         }
         public async Task<Order> CreateOrder(int clientId)
         {
-            //_query.UpdateStatusCart(clientId);
+            _query.UpdateStatusCart(clientId);
             OrderProductData result = _query.CalculateTotal(clientId);
             var order = new Order
             {
@@ -24,9 +24,6 @@ namespace Application.UserCase
                 Date = DateTime.Now,
                 Total = result.Total
             };
-            Console.WriteLine(order.CartId);
-            Console.WriteLine(order.Date);
-            Console.WriteLine(order.Total);
             await _command.InsertOrder(order);
             return order;
         }

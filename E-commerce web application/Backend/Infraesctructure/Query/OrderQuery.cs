@@ -1,4 +1,5 @@
-﻿using Application.Interface;
+﻿using System.Data.SqlTypes;
+using Application.Interface;
 using Application.Response;
 using Application.UserCase;
 using Infraesctructure.Persistence;
@@ -16,11 +17,11 @@ namespace Infraesctructure.Query
         public void UpdateStatusCart(int clientId)
         {
             var query = from cl in _context.Client
-                        where cl.ClientId == clientId
+                        where cl.ClientId == 1
                         join c in _context.Cart on cl.ClientId equals c.ClientId
                         where c.Status == true
                         select c;
-            query.ToList().FirstOrDefault().Status = false;
+            var cart = query.FirstOrDefault();
             _context.SaveChanges();
         }
         public OrderProductData CalculateTotal(int clientId)
