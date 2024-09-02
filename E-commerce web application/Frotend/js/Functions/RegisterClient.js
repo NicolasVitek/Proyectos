@@ -1,11 +1,11 @@
 import { cleanDiv } from "../component/mostrarElementos.js";
 import { crearCliente } from "../service/fetchService.js";
 
-var btnRegistrarCliente = document.getElementById("registrarCliente");
-let _cliente = document.getElementById("divRegistrarCliente");
-let divMian = document.getElementById("divMain");
+const btnRegistrarCliente = document.getElementById("registrarCliente");
+const clienteContainer = document.getElementById("divRegistrarCliente");
+const mainContainer = document.getElementById("divMain");
 
-export const displayClientForm = () => `
+const displayClientForm = () => `
 <form class="clientForm">
   <div class="form-row">
     <h3 class="text-primary">Registro de clientes</h3>
@@ -24,40 +24,49 @@ export const displayClientForm = () => `
       <input type="text" id='dniCliente' class="form-control" placeholder="DNI" required>
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationServer04">Direccion</label>
-      <input type="text" class="form-control" id="direccionCliente" placeholder="Direccion" required>
+      <label for="validationServer04">Dirección</label>
+      <input type="text" class="form-control" id="direccionCliente" placeholder="Dirección" required>
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationServer05">Numero de telefono</label>
-      <input type="text" class="form-control" id="telefonoCliente" placeholder="Numero de telefono" required>
+      <label for="validationServer05">Número de teléfono</label>
+      <input type="text" class="form-control" id="telefonoCliente" placeholder="Número de teléfono" required>
     </div>
   </div>
-  <button class="btn btn-primary" id="btnCliente" type="button" onClick="registrarCliente()">Registrar cliente</button>
-</form> 
-`
+  <button class="btn btn-primary" id="btnCliente" type="button">Registrar cliente</button>
+</form>
+`;
+
 const deshabilitarFormulario = () => {
-  let formInputs = document.querySelectorAll("#divRegistrarCliente input");
+  const formInputs = document.querySelectorAll("#divRegistrarCliente input");
+  const btnClient=document.getElementById("btnCliente");
+  btnClient.disabled=true;
   formInputs.forEach(input => {
     input.disabled = true;
   });
 };
-window.deshabilitarFormulario = deshabilitarFormulario;
-export const registrarCliente = () => {
-  let nombre = document.getElementById("nombreCliente");
-  let apellido = document.getElementById("apellidoCliente");
-  let dni = document.getElementById("dniCliente");
-  let direccion = document.getElementById("direccionCliente");
-  let telefono = document.getElementById("telefonoCliente");
-  crearCliente(dni.value,nombre.value, apellido.value,direccion.value,telefono.value);
-  deshabilitarFormulario();
-};
-window.registrarCliente = registrarCliente;
 
-export const renderFormulario = () => {
-  cleanDiv();
-  _cliente.innerHTML = displayClientForm();
-  divMian.appendChild(_cliente);
+const registrarCliente = async () => {
+  const firstName = document.getElementById("nombreCliente").value;
+  const lastName = document.getElementById("apellidoCliente").value;
+  const dni = document.getElementById("dniCliente").value;
+  const address = document.getElementById("direccionCliente").value;
+  const phoneNumber = document.getElementById("telefonoCliente").value;
+  try {
+    await crearCliente(dni, firstName, lastName, address, phoneNumber);
+    deshabilitarFormulario();
+  } catch (error) {
+    console.error("Error al crear cliente:", error);
+  }
 };
-export const desplegarFormulario = () => {
-  btnRegistrarCliente.addEventListener("click", renderFormulario)
+
+const renderFormulario = () => {
+  cleanDiv();
+  clienteContainer.innerHTML = displayClientForm();
+  mainContainer.appendChild(clienteContainer);
+  const btnCliente = document.getElementById("btnCliente");
+  btnCliente.addEventListener("click", registrarCliente);
+};
+
+export const initializeClientForm = () => {
+  btnRegistrarCliente.addEventListener("click", renderFormulario);
 };

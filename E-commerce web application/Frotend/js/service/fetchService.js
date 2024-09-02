@@ -1,39 +1,41 @@
-const Urlbase="https://localhost:7062/api/Product"
-const base="https://localhost:7062/api/Cart"
-const urlOrden="https://localhost:7062/api/Order"
-const urlCliente="https://localhost:7062/api/Client"
+const urlProduct = "https://localhost:7062/api/Product"
+const urlProductCart = "https://localhost:7062/api/ProductCart"
+const urlOrden = "https://localhost:7062/api/Order"
+const urlClient = "https://localhost:7062/api/Client"
 
 import { deployAlert } from "../component/carrito.js"
-import { ProductoCarrito } from "../component/productosCarrito.js"
+import { ProductCart } from "../component/ProductCart.js"
 
-export const crearCliente=async (dni, name, lastName, address, phoneNumber)=>{
-    await fetch(urlCliente,{
-        headers: {"Content-Type": "application/json",},
-        method:"POST",
-        body:JSON.stringify({
-            dni:dni,
-            name:name,
-            lastName:lastName,
-            address:address,
-            phoneNumber:phoneNumber})
-
-    }).then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()   
+export const crearCliente = async (dni, name, lastName, address, phoneNumber) => {
+    try {
+        const response = await fetch(urlClient, {
+            headers: { "Content-Type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({
+                dni: dni,
+                firstName: name,
+                lastName: lastName,
+                address: address,
+                phoneNumber: phoneNumber
+            }),
+        });
+        if (!response.ok) {
+            if (response.status === 500) {
+                throw new Error("El cliente ya fue agregado");
+            } else {
+                throw new Error(`Error: ${response.statusText}`);
+            }
         }
-        if(httpResponse.status==500){
-            deployAlert("El cliente ya fue agregado")
-        }
-    })
-    .then(body=>{
-        console.log("Cliente creado")
-    })
-}
+        return await response.json();
+    } catch (error) {
+        console.error("Error al crear el cliente:", error);
+        deployAlert(error.message);
+    }
+};
 
 export const getProducto = async (id) => {
     try {
-        const response = await fetch(`${Urlbase}/${id}`);
+        const response = await fetch(`${urlProduct}/${id}`);
         if (!response.ok) {
             throw new Error(`Error fetching product with id ${id}: ${response.statusText}`);
         }
@@ -44,138 +46,133 @@ export const getProducto = async (id) => {
         return null;
     }
 };
-export const getProductoCarrito=async (productoId, cantidad, callback)=>{
-    await fetch(`${Urlbase}/${productoId}`)
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()   
+export const getProductoCarrito = async (productoId, cantidad) => {
+    try {
+        const response = await fetch(`${urlProduct}/${productoId}`);
+        if (!response.ok) {
+            throw new Error("Error en la respuesta del servidor");
         }
-    })
-    .then(body=>{
-        callback(cantidad, body);
-    })
-}
-let contador=1
+        const data = await response.json();
+        return { cantidad, ...data };
+    } catch (error) {
+        console.error("Error al obtener el producto del carrito:", error);
+        return null; 
+    }
+};
 
-export const crearCarrito=async (clientId, productId, amount)=>{
-    await fetch(base,{
-        headers: {"Content-Type": "application/json",},
-        method:"POST",
-        body:JSON.stringify({
-            clientid:clientId,
-            productid:productId,
-            amount:amount})
+let contador = 1
 
-    }).then((httpResponse)=>
-    {
+export const crearCarrito = async (clientId, productId, amount) => {
+    await fetch(urlProductCart, {
+        headers: { "Content-Type": "application/json", },
+        method: "POST",
+        body: JSON.stringify({
+            clientid: clientId,
+            productid: productId,
+            amount: amount
+        })
+    }).then((httpResponse) => {
         if (httpResponse.ok) {
-            return httpResponse.json()   
+            return httpResponse.json()
         }
-        if(httpResponse.status==500){
+        if (httpResponse.status == 500) {
             deployAlert("El producto ya esta en el carrito")
         }
     })
-    .then(body=>{
-        localStorage.setItem(body.productoId,JSON.stringify(new ProductoCarrito(clientId, body.productoId, body.cantidad)))
-        console.log("Producto agregado")
-        contador++
-    })
+        .then(body => {
+            localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.amount)))
+            console.log("Producto agregado")
+            contador++
+        })
 }
-window.crearCarrito=crearCarrito
-export const deleteCarrito=async (clientId, productId)=>{
-    await fetch(`${base}/${clientId}/${productId}`,{
-        headers: {"Content-Type": "application/json",},
-        method:"DELETE",
+window.crearCarrito = crearCarrito
+export const deleteCarrito = async (clientId, productId) => {
+    await fetch(`${base}/${clientId}/${productId}`, {
+        headers: { "Content-Type": "application/json", },
+        method: "DELETE",
     })
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()   
-        }
-    })
-    .then(body=>{
-        localStorage.removeItem(body.productoId)
-        console.log("Producto eliminado")
-    })
+        .then((httpResponse) => {
+            if (httpResponse.ok) {
+                return httpResponse.json()
+            }
+        })
+        .then(body => {
+            localStorage.removeItem(body.productoId)
+            console.log("Producto eliminado")
+        })
 }
-export const changeCarrito=async (clientId, productId, amount)=>{
-    await fetch(base,{
-        headers: {"Content-Type": "application/json",},
-        method:"PATCH",
-        body:JSON.stringify({
-            clientid:clientId,
-            productid:productId,
-            amount:amount})
+export const changeCarrito = async (clientId, productId, amount) => {
+    await fetch(urlCart, {
+        headers: { "Content-Type": "application/json", },
+        method: "PATCH",
+        body: JSON.stringify({
+            clientid: clientId,
+            productid: productId,
+            amount: amount
+        })
 
-    }).then((httpResponse)=>
-    {
+    }).then((httpResponse) => {
         if (httpResponse.ok) {
-            return httpResponse.json()   
+            return httpResponse.json()
         }
     })
-    .then(body=>{
-        localStorage.removeItem(body.productId)
-        localStorage.setItem(body.productoId,JSON.stringify(new ProductoCarrito(clientId, body.productoId, body.cantidad)))
-        console.log("Producto actualizado")
-        contador++
-    })
+        .then(body => {
+            localStorage.removeItem(body.productId)
+            localStorage.setItem(body.productoId, JSON.stringify(new ProductCart(clientId, body.productoId, body.cantidad)))
+            console.log("Producto actualizado")
+            contador++
+        })
 }
-window.changeCarrito=changeCarrito
-export const buscarProducto=async (callback)=>{
-    const nombreProducto=document.getElementById("Buscador")
-    const orden=document.getElementById("orden")
-    let bool=true
-    if(orden.value=="Mayor a menor"){
-        bool=false
-    }  
-    await fetch(Urlbase +"?" + new URLSearchParams({
-        name:nombreProducto.value,
-        sort:bool,
+window.changeCarrito = changeCarrito
+export const buscarProducto = async (callback) => {
+    const nombreProducto = document.getElementById("Buscador").value;
+    const orden = document.getElementById("orden").value;
+    const isAscendingOrder = orden !== "Mayor a menor";
+    try {
+        const response = await fetch(urlProduct + "?" + new URLSearchParams({
+            name: nombreProducto,
+            sort: isAscendingOrder,
+        }));
+        if (!response.ok) {
+            throw new Error("Error en la respuesta del servidor");
+        }
+        const data = await response.json();
+        callback(data.$values);
+    } catch (error) {
+        console.error("Error al buscar productos:", error);
+    }
+};
+export const showBalance = async (desde, hasta, callback) => {
+    await fetch(urlOrden + "?" + new URLSearchParams({
+        from: desde,
+        to: hasta,
     }))
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()
-        }
-    })
-    .then(body=>{
-        callback(body.$values);
-    })
+        .then((httpResponse) => {
+            if (httpResponse.ok) {
+                return httpResponse.json()
+            }
+            else {
+                deployAlert("La factura ya fue generada")
+            }
+        })
+        .then(body => {
+            callback(body.$values);
+        })
 }
-export const showBalance=async (desde, hasta, callback)=>{ 
-    await fetch(urlOrden +"?" + new URLSearchParams({
-        from:desde,
-        to:hasta,
-    }))
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()
-        }
-        else{
-            deployAlert("La factura ya fue generada")
-        }
+export const showOrder = async (callback) => {
+    await fetch(`${urlOrden}/${1}`, {
+        headers: { "Content-Type": "application/json", },
+        method: "POST",
     })
-    .then(body=>{
-        callback(body.values);
-    })
-}
-export const showOrder=async (callback)=>{ 
-    await fetch(`${urlOrden}/${1}`,{
-        headers: {"Content-Type": "application/json",},
-        method:"POST",
-    })
-    .then((httpResponse)=>
-    {
-        if (httpResponse.ok) {
-            return httpResponse.json()
-        }
-        if(httpResponse.status==500){
-            deployAlert("La factura ya fue generada")
-        }
-    })
-    .then(body=>{
-        callback(body);
-    })
+        .then((httpResponse) => {
+            if (httpResponse.ok) {
+                return httpResponse.json()
+            }
+            if (httpResponse.status == 500) {
+                deployAlert("La factura ya fue generada")
+            }
+        })
+        .then(body => {
+            callback(body);
+        })
 }

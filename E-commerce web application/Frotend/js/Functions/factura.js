@@ -3,7 +3,6 @@ import {showOrder} from "../service/fetchService.js"
 let _factura = document.getElementById("divFactura");
 var btnFactura = document.getElementById("verFactura");
 
-
 const SaveAsPdf = () => {
   var data = document.getElementById('container');
   html2canvas(data, { scale: 2 }).then(canvas => {
@@ -52,20 +51,20 @@ export const displayFactura = (total, fecha) => `
 </div>
 `
 export const renderFactura = (json) => {
-  let fecha = json.fecha
+  let fecha = json.date
   let total = json.total
   _factura.innerHTML += displayFactura(total, fecha);
+}
+export const mostrarOrden = async () => {
+  document.getElementById("divProductos").innerHTML = "";
+  document.getElementById("divCarrito").innerHTML = "";
+  document.getElementById("divCerrarVenta").innerHTML = "";
+  document.getElementById("divRegistrarCliente").innerHTML = "";
+  document.getElementById("divBalance").setAttribute("hidden", "hidden");
+  document.getElementById("seccionBalance").setAttribute("hidden", "hidden");
+  await showOrder(renderFactura);
 }
 export const desplegarFactura = () => {
   btnFactura.addEventListener("click", mostrarOrden);
 }
-export const mostrarOrden = async () => {
-  //document.getElementById("divProductos").innerHTML = "";
-  /*document.getElementById("divCarrito").innerHTML = "";
-  document.getElementById("divCerrarVenta").innerHTML = "";
-  document.getElementById("divRegistrarCliente").innerHTML = "";
-  document.getElementById("divBalance").setAttribute("hidden", "hidden");
-  document.getElementById("seccionBalance").setAttribute("hidden", "hidden");*/
-  await showOrder(renderFactura);
-}
-window.mostrarOrden = mostrarOrden;
+

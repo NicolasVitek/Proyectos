@@ -3,6 +3,8 @@ import { limpiarDiv } from "../component/mostrarElementos.js";
 
 var verBalance = document.getElementById("verBalance");
 var btnBalance = document.getElementById("btnBalance");
+let divMian=document.getElementById("divMain");
+let _balance = document.getElementById("tabla");
 
 export const displayBalance = (
   numero,
@@ -32,30 +34,31 @@ export const displayTotal = (total) => `
         <td></td>
         <td><b>$${total}</b></td>
 `;
-let _balance = document.getElementById("tabla");
+
 export const renderFila = (array) => {
     let total;
     let numeroFila = 1
     let contadorOrdenes = 0
     let cantidadOrdenes = array.length
     while (contadorOrdenes < cantidadOrdenes) {
-        let nombreCliente = array[contadorOrdenes].nameClient
+        let firstNameClient = array[contadorOrdenes].firstNameClient
         let apellidoCliente = array[contadorOrdenes].lastNameClient
-        total = array[contadorOrdenes].income
+        total = array[contadorOrdenes].total
         let subTotal = array[contadorOrdenes].subTotal
         let nombreProducto = array[contadorOrdenes].productName
-        let cantidadProducto = array[contadorOrdenes].cantProduct
-        let precioProducto = array[contadorOrdenes].priceProduct
-        _balance.innerHTML += displayBalance(numeroFila, nombreCliente, apellidoCliente, nombreProducto, precioProducto, cantidadProducto, subTotal)
+        let cantidadProducto = array[contadorOrdenes].productAmount
+        let precioProducto = array[contadorOrdenes].productPrice
+        _balance.innerHTML += displayBalance(numeroFila, firstNameClient, apellidoCliente, nombreProducto, precioProducto, cantidadProducto, subTotal)
         contadorOrdenes++;
         numeroFila++;
     }
     _balance.innerHTML += displayTotal(total)
+    divMian.appendChild(_balance);
 }
-export const desplegarBalance = () => {
+export const initializeBalance = () => {
     btnBalance.addEventListener("click", mostrarBalance)
 }
-export const desplegarFechas = () => {
+export const initializeBalanceDiv = () => {
     verBalance.addEventListener("click", limpiarDiv)
 }
 export const mostrarBalance = async () => {
