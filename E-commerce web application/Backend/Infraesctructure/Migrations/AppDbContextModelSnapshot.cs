@@ -19,9 +19,9 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("CartId")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<int>("ClientId")
@@ -84,13 +84,13 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Property<Guid>("OrderId")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderId");
 
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT")
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<DateTime>("Date")
@@ -249,8 +249,8 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductCart", b =>
                 {
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT")
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<int>("ProductId")

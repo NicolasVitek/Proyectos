@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infraesctructure.Persistence
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Client> Client { get; set; }
         public DbSet<Cart> Cart { get; set; }
@@ -147,7 +147,8 @@ namespace Infraesctructure.Persistence
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("Cart");
-                entity.HasKey(e => e.CartId);
+                entity.HasKey(c => c.CartId);
+                entity.Property(c => c.CartId).ValueGeneratedOnAdd();
                 entity.Property(c => c.Status).HasColumnType("bit");
                 entity.HasOne<Order>(c => c.Order);
                 entity
@@ -172,29 +173,29 @@ namespace Infraesctructure.Persistence
                 entity.Property(p => p.Image).HasColumnType("TEXT");
                 entity
                 .HasMany<ProductCart>(p => p.ProductCart)
-                .WithOne(cp => cp.Product);
+                .WithOne(pc => pc.Product);
             });
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("Order");
                 entity.HasKey(o => o.OrderId);
-                entity.Property(p => p.OrderId).ValueGeneratedOnAdd();
+                entity.Property(o => o.OrderId).ValueGeneratedOnAdd();
                 entity.Property(o => o.Total).HasColumnType("decimal(15,2)");
                 entity.Property(o => o.Date).HasColumnType("datetime");
             });
             modelBuilder.Entity<ProductCart>(entity =>
             {
                 entity.ToTable("ProductCart");
-                entity.HasKey(cp => new { cp.CartId, cp.ProductId });
+                entity.HasKey(pc => new { pc.CartId, pc.ProductId });
                 entity.Property(o => o.Amount).HasColumnType("int");
                 entity
-                .HasOne<Cart>(cp => cp.Cart)
+                .HasOne<Cart>(pc => pc.Cart)
                 .WithMany(c => c.ProductCart)
-                .HasForeignKey(cp => cp.CartId);
+                .HasForeignKey(pc => pc.CartId);
                 entity
-                .HasOne<Product>(cp => cp.Product)
+                .HasOne<Product>(pc => pc.Product)
                 .WithMany(p => p.ProductCart)
-                .HasForeignKey(cp => cp.ProductId);
+                .HasForeignKey(pc => pc.ProductId);
             });
         }
     }

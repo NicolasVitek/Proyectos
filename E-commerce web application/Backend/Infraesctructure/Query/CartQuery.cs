@@ -12,12 +12,13 @@ namespace Infraesctructure.Query
             _context = context;
         }
 
-        public Guid GetCartId(int clientId)
+        public int GetCartId(int clientId)
         {
-            return _context.Cart
+            int cartId= _context.Cart
                            .Where(c => c.ClientId == clientId && c.Status)
                            .Select(c => c.CartId)
                            .FirstOrDefault();
+            return cartId;               
         }
     }
 }

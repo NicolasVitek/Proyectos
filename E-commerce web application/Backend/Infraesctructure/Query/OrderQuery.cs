@@ -16,19 +16,22 @@ namespace Infraesctructure.Query
         }
         public void UpdateStatusCart(int clientId)
         {
-            var query = from cl in _context.Client
-                        where cl.ClientId == 1
-                        join c in _context.Cart on cl.ClientId equals c.ClientId
-                        where c.Status == true
-                        select c;
-            var cart = query.FirstOrDefault();
+var query = from cl in _context.Client
+            where cl.ClientId == clientId
+            join c in _context.Cart on cl.ClientId equals c.ClientId
+            select c;
+
+foreach (var cart in query)
+{
+    cart.Status = false;
+}
             _context.SaveChanges();
         }
         public OrderProductData CalculateTotal(int clientId)
         {
-            Guid cartId = new();
+            int cartId=0;
             double total = 0;
-            var query = from cl in _context.Client
+            var productsInCart = from cl in _context.Client
                         where cl.ClientId == clientId
                         join c in _context.Cart on cl.ClientId equals c.ClientId
                         where c.Status == false
@@ -40,8 +43,8 @@ namespace Infraesctructure.Query
                             Amount = cp.Amount,
                             CartId = c.CartId
                         };
-            var list = query.ToList();
-            foreach (OrderProductData product in list)
+            var listOfProducts = productsInCart.ToList();
+            foreach (OrderProductData product in listOfProducts)
             {
                 total += product.Price * product.Amount;
                 cartId = product.CartId;

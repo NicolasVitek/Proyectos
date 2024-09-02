@@ -35,11 +35,9 @@ namespace TP1_REST_Vitek_Nicolas.Controllers
                 return BadRequest(ex.message);
             }
         }
-        /// <summary>
-        /// Returns a list of purchase orders within a specified date range.
-        /// </summary>
-        /// <param name="from">The start date of the range.</param>
-        /// <param name="to">The end date of the range.</param>
+        /// <summary>Returns a list of purchase orders within a specified date range.</summary>
+        /// <param name="from">The start date of the range(yyyy/mm/dd).</param>
+        /// <param name="to">The end date of the range(yyyy/mm/dd).</param>
         /// <returns>A JSON result containing the list of purchase orders within 
         /// the specified date range or a bad request if the dates are the same.</returns>
         /// <response code="200">Orders delivered successfully.</response>

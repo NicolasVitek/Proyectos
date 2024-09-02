@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infraesctructure.Migrations
 {
     /// <inheritdoc />
-    public partial class _20240830_AddTables : Migration
+    public partial class _20240829_AddTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,8 @@ namespace Infraesctructure.Migrations
                 name: "Cart",
                 columns: table => new
                 {
-                    cartId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    cartId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     clientId = table.Column<int>(type: "INTEGER", nullable: false),
                     status = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -71,8 +72,9 @@ namespace Infraesctructure.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    orderId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    cartId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    orderId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    cartId = table.Column<int>(type: "INTEGER", nullable: false),
                     date = table.Column<DateTime>(type: "datetime", nullable: false),
                     total = table.Column<double>(type: "decimal(15,2)", nullable: false)
                 },
@@ -91,7 +93,7 @@ namespace Infraesctructure.Migrations
                 name: "ProductCart",
                 columns: table => new
                 {
-                    cartId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    cartId = table.Column<int>(type: "INTEGER", nullable: false),
                     productId = table.Column<int>(type: "INTEGER", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false)
                 },

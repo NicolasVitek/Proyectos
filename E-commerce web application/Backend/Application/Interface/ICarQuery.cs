@@ -5,6 +5,6 @@ namespace Application.Interface
 {
     public interface ICartQuery
     {
-        public Guid GetCartId(int clientId);
+        public int GetCartId(int clientId);
     }
 }

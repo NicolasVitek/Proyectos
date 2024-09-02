@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraesctructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240830231539_20240830_AddTables")]
-    partial class _20240830_AddTables
+    [Migration("20240901214618_20240829_AddTables")]
+    partial class _20240829_AddTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,9 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Cart", b =>
                 {
-                    b.Property<Guid>("CartId")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<int>("ClientId")
@@ -87,13 +87,13 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Property<Guid>("OrderId")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderId");
 
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT")
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<DateTime>("Date")
@@ -252,8 +252,8 @@ namespace Infraesctructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductCart", b =>
                 {
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("TEXT")
+                    b.Property<int>("CartId")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("cartId");
 
                     b.Property<int>("ProductId")

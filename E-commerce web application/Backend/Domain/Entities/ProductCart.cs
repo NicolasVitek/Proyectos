@@ -5,7 +5,7 @@ namespace Domain.Entities
     public class ProductCart
     {   
         [Column("cartId")]
-        public Guid CartId { get; set; }
+        public int CartId { get; set; }
         [Column("productId")]
         public int ProductId { get; set; }
         [Column("amount")]

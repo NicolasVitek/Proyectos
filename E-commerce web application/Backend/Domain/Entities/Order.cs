@@ -5,9 +5,9 @@ namespace Domain.Entities
     public class Order
     {
         [Column("orderId")]
-        public Guid OrderId { get; set; }
+        public int OrderId { get; set; }
         [Column("cartId")]
-        public Guid CartId { get; set; }
+        public int CartId { get; set; }
         [Column("date")]
         public DateTime Date { get; set; }
         [Column("total")]

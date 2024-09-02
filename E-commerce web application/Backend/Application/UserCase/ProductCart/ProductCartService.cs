@@ -18,8 +18,8 @@ namespace Application.UserCase.cart
         }
         public async Task<ProductCart> CreateProductCart(ProductCartRequest request)
         {
-            Guid cartId = _carQuery.GetCartId(request.ClientId);
-            if (cartId == Guid.Empty)
+            int cartId = _carQuery.GetCartId(request.ClientId);
+            if (cartId == null)
             {
                 throw new NonExistentIDException();
             }
@@ -45,8 +45,8 @@ namespace Application.UserCase.cart
 
         public async Task<ProductCart> UpdateProductCart(ProductCartRequest request)
         {
-            Guid cartId = _carQuery.GetCartId(request.ClientId);
-            if (cartId == Guid.Empty)
+            int cartId = _carQuery.GetCartId(request.ClientId);
+            if (cartId == null)
             {
                 throw new NonExistentIDException();
             }

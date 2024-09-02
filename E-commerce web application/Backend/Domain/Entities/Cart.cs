@@ -5,7 +5,7 @@ namespace Domain.Entities
     public class Cart
     {
         [Column("cartId")]
-        public Guid CartId { get; set; }= Guid.NewGuid();
+        public int CartId { get; set; }
         [Column("clientId")]
         public int ClientId { get; set; }
         [Column("status")]

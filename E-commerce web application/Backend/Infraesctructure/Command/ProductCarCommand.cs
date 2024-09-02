@@ -12,7 +12,11 @@ namespace Infraesctructure.Command
         {
             _context = context;
         }
-
+        public async Task InsertProductCart(ProductCart productCart)
+        {
+            _context.Add(productCart);
+            await _context.SaveChangesAsync();
+        }
         public async Task DeletedProductCart(ProductCart productCart)
         {
             _context.Remove(productCart);
@@ -21,11 +25,6 @@ namespace Infraesctructure.Command
         public async Task UpdateProductCart(ProductCart productCart)
         {
             _context.Update(productCart);
-            await _context.SaveChangesAsync();
-        }
-        public async Task InsertProductCart(ProductCart productCart)
-        {
-            _context.Add(productCart);
             await _context.SaveChangesAsync();
         }
     }
