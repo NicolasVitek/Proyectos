@@ -6,7 +6,7 @@ const urlClient = "https://localhost:7062/api/Client"
 import { deployAlert } from "../component/carrito.js"
 import { ProductCart } from "../component/ProductCart.js"
 
-export const crearCliente = async (dni, name, lastName, address, phoneNumber) => {
+export const createClient = async (dni, name, lastName, address, phoneNumber) => {
     try {
         const response = await fetch(urlClient, {
             headers: { "Content-Type": "application/json" },
@@ -20,20 +20,22 @@ export const crearCliente = async (dni, name, lastName, address, phoneNumber) =>
             }),
         });
         if (!response.ok) {
-            if (response.status === 500) {
+            if (response.status === 400) {
                 throw new Error("El cliente ya fue agregado");
             } else {
                 throw new Error(`Error: ${response.statusText}`);
             }
         }
+        else{
+            console.log("Cliente creado")
+        }
         return await response.json();
     } catch (error) {
         console.error("Error al crear el cliente:", error);
-        deployAlert(error.message);
     }
 };
 
-export const getProducto = async (id) => {
+export const getProduct = async (id) => {
     try {
         const response = await fetch(`${urlProduct}/${id}`);
         if (!response.ok) {
@@ -46,14 +48,14 @@ export const getProducto = async (id) => {
         return null;
     }
 };
-export const getProductoCarrito = async (productoId, cantidad) => {
+export const getProductCart = async (productId, amaount) => {
     try {
-        const response = await fetch(`${urlProduct}/${productoId}`);
+        const response = await fetch(`${urlProduct}/${productId}`);
         if (!response.ok) {
             throw new Error("Error en la respuesta del servidor");
         }
         const data = await response.json();
-        return { cantidad, ...data };
+        return { amaount, ...data };
     } catch (error) {
         console.error("Error al obtener el producto del carrito:", error);
         return null; 
@@ -97,7 +99,7 @@ export const deleteCarrito = async (clientId, productId) => {
             }
         })
         .then(body => {
-            localStorage.removeItem(body.productoId)
+            localStorage.removeItem(body.productId)
             console.log("Producto eliminado")
         })
 }
@@ -118,7 +120,7 @@ export const changeCarrito = async (clientId, productId, amount) => {
     })
         .then(body => {
             localStorage.removeItem(body.productId)
-            localStorage.setItem(body.productoId, JSON.stringify(new ProductCart(clientId, body.productoId, body.cantidad)))
+            localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.cantidad)))
             console.log("Producto actualizado")
             contador++
         })

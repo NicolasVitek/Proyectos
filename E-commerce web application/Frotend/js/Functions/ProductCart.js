@@ -1,15 +1,14 @@
-import { cleanDiv } from "../component/mostrarElementos.js"
-import { getProductoCarrito } from "../service/fetchService.js";
+import { getProductCart } from "../service/fetchService.js";
 import { mostrarOrden } from "./factura.js";
 
-let rootElement = document.getElementById("divCarrito");
 let divMian=document.getElementById("divMain");
-let divCerrarVenta=document.getElementById("divCerrarVenta");
-var btnModProductos = document.getElementById("eliminarProducto");
+let divProductCart = document.getElementById("divProductCart");
+var liProductCart = document.getElementById("liProductCart");
+let divCompletePurchase=document.getElementById("divCompletePurchase");
 var counterProductCart = 1;
 
 export const dislayBtnCerrarVenta = () => `
-<button id='btnCerrarVenta' type="button" onClick="mostrarOrden()" class="btn btn-primary btn-lg btn-block">Cerrar venta</button>
+<button id='btnCompletePurchase' type="button" onClick="mostrarOrden()" class="btn btn-primary btn-lg btn-block">Finalizar compra</button>
 `;
 window.mostrarOrden=mostrarOrden;
 export const displayCarrito = (productId, image, name, price, brand, numero, amaount) => `
@@ -40,8 +39,8 @@ export const mostrarCarrito = async () => {
         const productId = localStorage.key(i);
         const product = JSON.parse(localStorage.getItem(productId));
         try {
-            const json = await getProductoCarrito(product.productoId, product.productoCant);
-            renderCarrito(product.productoCant, json);
+            const json = await getProductCart(product.productId, product.amaount);
+            renderCarrito(product.amaount, json);
         } catch (error) {
             console.error("Error al obtener el producto del carrito:", error);
         }
@@ -49,13 +48,13 @@ export const mostrarCarrito = async () => {
 };
 
 export const renderCarrito = (amaount, { name, image, price, productId, brand }) => {
-    rootElement.innerHTML += displayCarrito(productId, image, name, price, brand, counterProductCart, amaount);
-    divCerrarVenta.innerHTML = dislayBtnCerrarVenta();
-    divMian.appendChild(rootElement);
-    divMian.appendChild(divCerrarVenta);
+    divProductCart.innerHTML += displayCarrito(productId, image, name, price, brand, counterProductCart, amaount);
+    divCompletePurchase.innerHTML = dislayBtnCerrarVenta();
+    divMian.appendChild(divProductCart);
+    divMian.appendChild(divCompletePurchase);
     counterProductCart++;
 };
 
 export const initializeProductCart = () => {
-    btnModProductos.addEventListener("click", mostrarCarrito);
+    liProductCart.addEventListener("click", mostrarCarrito);
 };

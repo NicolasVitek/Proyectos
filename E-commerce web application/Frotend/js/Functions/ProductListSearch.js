@@ -2,7 +2,7 @@ import { buscarProducto } from "../service/fetchService.js";
 import { cleanDiv } from "../component/mostrarElementos.js";
 import { createProductCard } from "./ProductList.js";
 
-const rootElement = document.getElementById("divProductos");
+const rootElement = document.getElementById("divProductList");
 const btnBuscarProducto = document.getElementById("btnBuscarProducto");
 const divMain = document.getElementById("divMain");
 

@@ -6,9 +6,9 @@ export const cleanDiv = () => {
 
 /*Funcion para ver balance*/
 export const limpiarDiv = () => {
-   /* document.getElementById("divProductos").innerHTML = ""
-    document.getElementById("divCarrito").innerHTML = ""
-    document.getElementById("divCerrarVenta").innerHTML = ""
+   /* document.getElementById("divProductList").innerHTML = ""
+    document.getElementById("divProductCart").innerHTML = ""
+    document.getElementById("divCompletePurchase").innerHTML = ""
     document.getElementById("divFactura").innerHTML = ""*/
     document.getElementById("divBalance").removeAttribute("hidden")
     document.getElementById("seccionBalance").removeAttribute("hidden")

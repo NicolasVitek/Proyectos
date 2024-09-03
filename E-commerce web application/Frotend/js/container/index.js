@@ -27,7 +27,7 @@ export const renderProducto = (json) => {
 
 
 export const IndexRender =  () => {
-    //document.getElementById("divCerrarVenta").innerHTML = dislayBtnCerrarVenta();
+    //document.getElementById("divCompletePurchase").innerHTML = dislayBtnCerrarVenta();
     initializeProductList();
     desplegarProductosFiltrados();
     desplegarCarrito();

@@ -1,9 +1,10 @@
 import { cleanDiv } from "../component/mostrarElementos.js";
-import { getProducto } from "../service/fetchService.js";
+import { getProduct } from "../service/fetchService.js";
 
-const rootElement = document.getElementById("divProductos");
-const btnListaProductos = document.getElementById("listaProductos");
+
 const divMain = document.getElementById("divMain");
+const divProductList = document.getElementById("divProductList");
+const liProductList = document.getElementById("liProductList");
 let productCounter = 1;
 
 export const createProductCard = ({ productId, image, name, brand, price, code, description }, index) => `
@@ -30,7 +31,7 @@ export const createProductCard = ({ productId, image, name, brand, price, code, 
 const renderProductList = async () => {
     cleanDiv();
     for (let i = 1; i <= 10; i++) {
-        const productData = await getProducto(i);
+        const productData = await getProduct(i);
         appendProductToDOM(productData, productCounter);
         productCounter++;
     }
@@ -38,10 +39,10 @@ const renderProductList = async () => {
 
 const appendProductToDOM = (productData, index) => {
     const productCard = createProductCard(productData, index);
-    rootElement.innerHTML += productCard;
-    divMain.appendChild(rootElement);
+    divProductList.innerHTML += productCard;
+    divMain.appendChild(divProductList);
 };
 
 export const initializeProductList = () => {
-    btnListaProductos.addEventListener("click", renderProductList);
+    liProductList.addEventListener("click", renderProductList);
 };

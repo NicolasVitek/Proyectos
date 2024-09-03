@@ -8,8 +8,8 @@ let _balance = document.getElementById("tabla");
 
 export const displayBalance = (
   numero,
-  nombreCliente,
-  apellidoCliente,
+  firstName,
+  lastName,
   nombreProducto,
   precioProducto,
   cantidadProducto,
@@ -17,8 +17,8 @@ export const displayBalance = (
 ) => `
     <tr class="bg-success">
         <th scope="row">${numero}</th>
-        <td>${nombreCliente}</td>
-        <td>${apellidoCliente}</td>
+        <td>${firstName}</td>
+        <td>${lastName}</td>
         <td>${nombreProducto}</td>
         <td>${cantidadProducto}</td>
         <td>$${precioProducto}</td>
@@ -42,13 +42,13 @@ export const renderFila = (array) => {
     let cantidadOrdenes = array.length
     while (contadorOrdenes < cantidadOrdenes) {
         let firstNameClient = array[contadorOrdenes].firstNameClient
-        let apellidoCliente = array[contadorOrdenes].lastNameClient
+        let lastName = array[contadorOrdenes].lastNameClient
         total = array[contadorOrdenes].total
         let subTotal = array[contadorOrdenes].subTotal
         let nombreProducto = array[contadorOrdenes].productName
         let cantidadProducto = array[contadorOrdenes].productAmount
         let precioProducto = array[contadorOrdenes].productPrice
-        _balance.innerHTML += displayBalance(numeroFila, firstNameClient, apellidoCliente, nombreProducto, precioProducto, cantidadProducto, subTotal)
+        _balance.innerHTML += displayBalance(numeroFila, firstNameClient, lastName, nombreProducto, precioProducto, cantidadProducto, subTotal)
         contadorOrdenes++;
         numeroFila++;
     }

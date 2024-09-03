@@ -1,4 +1,4 @@
-#divCarrito {
+#divProductCart {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
     gap: 1%;
@@ -28,10 +28,10 @@
   #btnCerrar {
     top: -5px;
   }
-  #divCerrarVenta {
+  #divCompletePurchase {
     display: flex;
     justify-content: center;
   }
-  #btnCerrarVenta {
+  #btnCompletePurchase {
     width: 100%;
   }
