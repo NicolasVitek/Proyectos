@@ -4,7 +4,6 @@ import {
   deleteCarrito,
 } from "../service/fetchService.js";
 
-
 const deshabilitar = (id) => {
   const btnEliminar = document.getElementById(`btnEliminar` + id);
   const btnModificar = document.getElementById(`btnModificar` + id);
@@ -62,16 +61,6 @@ const agregarCarrito = (id) => {
 window.sumarUnidad = sumarUnidad;
 window.restarUnidad = restarUnidad;
 window.agregarCarrito = agregarCarrito;
-export const displayProducto = (id, img, nombre, precio, numero) => `
-        <div class="container" id="carrito_producto">
-            <img id="img-producto" src="${img}" alt="">
-            <label id="lblNombre">${nombre}</label>
-            <label id="lblPrecio">${"$" + precio}</label>
-            <button id='btnSumar${numero}' type="button" onClick="sumarUnidad(${numero})">+</button>
-            <button id="btnRestar${numero}" type="button" onClick="restarUnidad(${numero})">-</button>
-            <input id='impCantidad${numero}' name=${id} type="number" min=0 minLength=1 value=0 placeholder="" readonly></input>
-            <button class="btnPrimary" id="btnAgregar${numero}" type="button" onClick="agregarCarrito(${numero})">Agregar</button>
-        </div>`;
 
 const eliminarCarrito = (id) => {
   const productId = document.getElementById(`impCantidad` + id);

@@ -62,7 +62,6 @@ export const getProductCart = async (productId, amaount) => {
     }
 };
 
-let contador = 1
 
 export const crearCarrito = async (clientId, productId, amount) => {
     await fetch(urlProductCart, {
@@ -84,7 +83,6 @@ export const crearCarrito = async (clientId, productId, amount) => {
         .then(body => {
             localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.amount)))
             console.log("Producto agregado")
-            contador++
         })
 }
 window.crearCarrito = crearCarrito
@@ -122,7 +120,6 @@ export const changeCarrito = async (clientId, productId, amount) => {
             localStorage.removeItem(body.productId)
             localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.cantidad)))
             console.log("Producto actualizado")
-            contador++
         })
 }
 window.changeCarrito = changeCarrito
@@ -144,10 +141,10 @@ export const buscarProducto = async (callback) => {
         console.error("Error al buscar productos:", error);
     }
 };
-export const showBalance = async (desde, hasta, callback) => {
+export const showBalance = async (startDate, endDate, callback) => {
     await fetch(urlOrden + "?" + new URLSearchParams({
-        from: desde,
-        to: hasta,
+        from: startDate,
+        to: endDate,
     }))
         .then((httpResponse) => {
             if (httpResponse.ok) {

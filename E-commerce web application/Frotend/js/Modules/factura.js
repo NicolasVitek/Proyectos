@@ -56,12 +56,6 @@ export const renderFactura = (json) => {
   _factura.innerHTML += displayFactura(total, fecha);
 }
 export const mostrarOrden = async () => {
-  document.getElementById("divProductList").innerHTML = "";
-  document.getElementById("divProductCart").innerHTML = "";
-  document.getElementById("divCompletePurchase").innerHTML = "";
-  document.getElementById("divRegisterClient").innerHTML = "";
-  document.getElementById("divBalance").setAttribute("hidden", "hidden");
-  document.getElementById("seccionBalance").setAttribute("hidden", "hidden");
   await showOrder(renderFactura);
 }
 export const desplegarFactura = () => {

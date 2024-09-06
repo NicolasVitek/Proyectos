@@ -1,17 +1,17 @@
+import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
 import { getProductCart } from "../service/fetchService.js";
 import { mostrarOrden } from "./factura.js";
 
-let divMian=document.getElementById("divMain");
-let divProductCart = document.getElementById("divProductCart");
+var divProductCart;
+var divCompletePurchase;
 var liProductCart = document.getElementById("liProductCart");
-let divCompletePurchase=document.getElementById("divCompletePurchase");
 var counterProductCart = 1;
 
-export const dislayBtnCerrarVenta = () => `
+export const createFinishBuyButton = () => `
 <button id='btnCompletePurchase' type="button" onClick="mostrarOrden()" class="btn btn-primary btn-lg btn-block">Finalizar compra</button>
 `;
 window.mostrarOrden=mostrarOrden;
-export const displayCarrito = (productId, image, name, price, brand, numero, amaount) => `
+export const createProductCartCard = (productId, image, name, price, brand, numero, amaount) => `
   <div class="card w-95 p-3" id="card${numero}">
   <div class="d-flex justify-content-between align-items-start">
       <div class="mt-2">
@@ -33,28 +33,30 @@ export const displayCarrito = (productId, image, name, price, brand, numero, ama
       <button class="btn btn-warning" id="btnModificar${numero}" type="button" onClick="modificarCarrito(${numero})">Modificar</button>
   </div>    
 `;
+export const appendProductCartToDOM = (amaount, { name, image, price, productId, brand }) => {
+    divProductCart = document.getElementById('divProductCart');
+    divProductCart.innerHTML += createProductCartCard(productId, image, name, price, brand, counterProductCart, amaount);
+    divCompletePurchase = document.getElementById('divCompletePurchase');
+    divCompletePurchase.innerHTML = createFinishBuyButton();
+    counterProductCart++;
+};
 
-export const mostrarCarrito = async () => {
+export const renderProductCart = async () => {
+    divProductCart=createContainer('divProductCart');
+    divCompletePurchase=createContainer('divCompletePurchase');
+    appendContainersToDivMain(divProductCart, divCompletePurchase);
     for (let i = 0; i < localStorage.length; i++) {
         const productId = localStorage.key(i);
         const product = JSON.parse(localStorage.getItem(productId));
         try {
             const json = await getProductCart(product.productId, product.amaount);
-            renderCarrito(product.amaount, json);
+            appendProductCartToDOM(product.amaount, json);
         } catch (error) {
             console.error("Error al obtener el producto del carrito:", error);
         }
     }
 };
 
-export const renderCarrito = (amaount, { name, image, price, productId, brand }) => {
-    divProductCart.innerHTML += displayCarrito(productId, image, name, price, brand, counterProductCart, amaount);
-    divCompletePurchase.innerHTML = dislayBtnCerrarVenta();
-    divMian.appendChild(divProductCart);
-    divMian.appendChild(divCompletePurchase);
-    counterProductCart++;
-};
-
 export const initializeProductCart = () => {
-    liProductCart.addEventListener("click", mostrarCarrito);
+    liProductCart.addEventListener("click", renderProductCart);
 };

@@ -39,7 +39,7 @@
                 >Carrito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="verBalance" href="#" aria-current="page"
+              <a class="nav-link" id="liBalance" href="#" aria-current="page"
                 >Balance</a>
             </li>
             <li class="nav-item">
@@ -66,7 +66,7 @@
         <input id="Buscador" type="search" placeholder="Producto" />
         <button
           class="btn btn-primary"
-          id="btnBuscarProducto"
+          id="btnProductSearch"
           type="submit">Buscar
         </button>
         <select class="form-select" id="orden" required>
@@ -77,33 +77,7 @@
       </div>
     </nav>
     <div id="divMain">
-      <div id="divRegisterClient"></div>
-      <div id="divProductList"></div>
-      <div id="divProductCart"></div>
-      <div id="divCompletePurchase"></div>
       <div id="divFactura"></div>
-      <div id="divBalance">
-        <div id="seccionBalance" hidden>
-          <h3 class="text-primary">Balance de operaciones</h3>
-          <label class="font-weight-bold text-secondary" for="fechaInicio">Desde:</label>
-          <input type="text" id="fechaInicio" />
-          <label class="text-secondary" for="fechaFin">Hasta:</label>
-          <input type="text" id="fechaFin" />
-          <button class="btn btn-primary" id="btnBalance">Ver balance</button>
-          <table class="table" id="tabla">
-            <thead>
-              <tr class="bg-primary" id="filaTitulos" hidden>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Sub-total</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
       </div>
     </div>
     <script
@@ -111,6 +85,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./js/init.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
