@@ -1,5 +1,5 @@
-import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
-import { getProduct } from "../service/fetchService.js";
+import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
+import { getProduct } from "../../service/fetchService.js";
 
 var divProductList;
 const liProductList = document.getElementById("liProductList");
@@ -24,28 +24,14 @@ export const createProductCard = ({ productId, image, name, brand, price, code, 
         </div>
     </div>
 `;
-// const createDivProductList = () => {
-//     const div = document.createElement('div');
-//     div.id = 'divProductList';
-//     return div;
-// }
-
-// const appendDivProductListToMain=()=>{
-//     divProductList = createDivProductList();
-//     cleanDivMain();
-//     divMain.appendChild(divProductList);
-// }
-
 
 const appendProductToDiv = (productData, index) => {
     divProductList = document.getElementById('divProductList');
     divProductList.innerHTML += createProductCard(productData, index);
-    //divProductList.innerHTML += productCard;
-    //divMain.appendChild(divProductList);
+
 };
 
 const renderProductList = async () => {
-    //appendDivProductListToMain()
     divProductList=createContainer('divProductList');
     appendContainersToDivMain(divProductList);
     for (let i = 1; i <= 10; i++) {

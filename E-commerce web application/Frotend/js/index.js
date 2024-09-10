@@ -1,8 +1,9 @@
-import { initializeProductList } from "./Modules/ProductList.js"
-import {  initializeBalanceDiv } from "./Modules/Balance.js";
-import { initializeProductCart } from "./Modules/ProductCart.js";
-import { initializeFilteredProducts } from "./Modules/ProductListSearch.js";
-import { initializeClientForm } from "./Modules/RegisterClient.js";
+import { initializeProductList } from "./Modules/Product/ProductList.js"
+import { initializeBalanceDiv } from "./Modules/Order/Balance.js";
+import { initializeProductCart } from "./Modules/Product/ProductCart.js";
+import { initializeFilteredProducts } from "./Modules/Product/ProductListSearch.js";
+import { initializeClientForm } from "./Modules/Client/RegisterClient.js";
+import { initializeOrder } from "./Modules/Order/Invoice.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initializeProductList();
@@ -10,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeFilteredProducts();
     initializeProductCart();
     initializeBalanceDiv();
+    initializeOrder();
 });

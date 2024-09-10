@@ -3,7 +3,6 @@ const urlProductCart = "https://localhost:7062/api/ProductCart"
 const urlOrden = "https://localhost:7062/api/Order"
 const urlClient = "https://localhost:7062/api/Client"
 
-import { deployAlert } from "../component/carrito.js"
 import { ProductCart } from "../component/ProductCart.js"
 
 export const createClient = async (dni, name, lastName, address, phoneNumber) => {
@@ -26,7 +25,7 @@ export const createClient = async (dni, name, lastName, address, phoneNumber) =>
                 throw new Error(`Error: ${response.statusText}`);
             }
         }
-        else{
+        else {
             console.log("Cliente creado")
         }
         return await response.json();
@@ -58,12 +57,12 @@ export const getProductCart = async (productId, amaount) => {
         return { amaount, ...data };
     } catch (error) {
         console.error("Error al obtener el producto del carrito:", error);
-        return null; 
+        return null;
     }
 };
 
 
-export const crearCarrito = async (clientId, productId, amount) => {
+export const createProductCart = async (clientId, productId, amount) => {
     await fetch(urlProductCart, {
         headers: { "Content-Type": "application/json", },
         method: "POST",
@@ -76,17 +75,16 @@ export const crearCarrito = async (clientId, productId, amount) => {
         if (httpResponse.ok) {
             return httpResponse.json()
         }
-        if (httpResponse.status == 500) {
-            deployAlert("El producto ya esta en el carrito")
-        }
     })
         .then(body => {
             localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.amount)))
             console.log("Producto agregado")
         })
 }
-window.crearCarrito = crearCarrito
-export const deleteCarrito = async (clientId, productId) => {
+
+window.createProductCart = createProductCart
+
+export const deleteProductCart = async (clientId, productId) => {
     await fetch(`${base}/${clientId}/${productId}`, {
         headers: { "Content-Type": "application/json", },
         method: "DELETE",
@@ -101,7 +99,7 @@ export const deleteCarrito = async (clientId, productId) => {
             console.log("Producto eliminado")
         })
 }
-export const changeCarrito = async (clientId, productId, amount) => {
+export const updateProductCart = async (clientId, productId, amount) => {
     await fetch(urlCart, {
         headers: { "Content-Type": "application/json", },
         method: "PATCH",
@@ -122,8 +120,10 @@ export const changeCarrito = async (clientId, productId, amount) => {
             console.log("Producto actualizado")
         })
 }
-window.changeCarrito = changeCarrito
-export const buscarProducto = async (callback) => {
+
+window.updateProductCart = updateProductCart
+
+export const searchProduct = async (callback) => {
     const nombreProducto = document.getElementById("Buscador").value;
     const orden = document.getElementById("orden").value;
     const isAscendingOrder = orden !== "Mayor a menor";
@@ -141,6 +141,7 @@ export const buscarProducto = async (callback) => {
         console.error("Error al buscar productos:", error);
     }
 };
+
 export const showBalance = async (startDate, endDate, callback) => {
     await fetch(urlOrden + "?" + new URLSearchParams({
         from: startDate,
@@ -161,7 +162,7 @@ export const showBalance = async (startDate, endDate, callback) => {
 export const showOrder = async (callback) => {
     await fetch(`${urlOrden}/${1}`, {
         headers: { "Content-Type": "application/json", },
-        method: "POST",
+        method: "GET",
     })
         .then((httpResponse) => {
             if (httpResponse.ok) {

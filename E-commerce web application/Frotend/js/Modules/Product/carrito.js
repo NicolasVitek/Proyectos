@@ -1,7 +1,7 @@
 import {
-  changeCarrito,
-  crearCarrito,
-  deleteCarrito,
+  updateProductCart,
+  createProductCart,
+  deleteProductCart,
 } from "../service/fetchService.js";
 
 const deshabilitar = (id) => {
@@ -54,7 +54,7 @@ const agregarCarrito = (id) => {
   if (text.value == 0) {
     deployAlert("La cantidad no puede ser cero");
   } else {
-    crearCarrito(1, text.name, text.value);
+    createProductCart(1, text.name, text.value);
     deshabilitar(id);
   }
 };
@@ -65,7 +65,7 @@ window.agregarCarrito = agregarCarrito;
 const eliminarCarrito = (id) => {
   const productId = document.getElementById(`impCantidad` + id);
   const card = document.getElementById(`card` + id);
-  deleteCarrito(1, productId.name);
+  deleteProductCart(1, productId.name);
   card.parentNode.removeChild(card);
   /*deshabilitar(id)*/
 };
@@ -76,7 +76,7 @@ const modificarCarrito = (id) => {
   } else {
     text.style.color = "#0AE30A";
     text.style.fontWeight = "bold";
-    changeCarrito(1, text.name, text.value);
+    updateProductCart(1, text.name, text.value);
   }
 };
 window.eliminarCarrito = eliminarCarrito;

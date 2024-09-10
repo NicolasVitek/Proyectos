@@ -1,5 +1,5 @@
-import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
-import { createClient } from "../service/fetchService.js";
+import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
+import { createClient } from "../../service/fetchService.js";
 
 var divRegisterClient;
 const liClientForm = document.getElementById("liClientForm");

@@ -1,10 +1,10 @@
-import { showBalance } from "../service/fetchService.js";
-import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
+import { showBalance } from "../../service/fetchService.js";
+import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
 
 var divBalance;
 var liBalance = document.getElementById("liBalance");
 
-const createDivOperationBalance = () => 
+const createDivOperationBalance = () =>
     `<div id="divOperationBalance">
           <h3 class="text-primary">Balance de operaciones</h3>
           <label class="font-weight-bold text-secondary" for="fechaInicio">Fecha inicial</label>
@@ -61,7 +61,7 @@ export const appendRowToBalanceTable = (listOfOrders) => {
     let rowNumber = 1;
     let orderCounter = 0;
     let orderAmaount = listOfOrders.length;
-    let divOperationBalance=document.getElementById("divOperationBalance");
+    let divOperationBalance = document.getElementById("divOperationBalance");
     let taBalanceTable = document.getElementById("taBalanceTable");
     while (orderCounter < orderAmaount) {
         let firstNameClient = listOfOrders[orderCounter].firstNameClient
@@ -80,18 +80,17 @@ export const appendRowToBalanceTable = (listOfOrders) => {
 }
 
 export const renderBalance = async () => {
-    
     const startDate = document.getElementById("inpStartDate")
     const endDate = document.getElementById("inpEndDate")
     document.getElementById("trBalanceTitle").removeAttribute("hidden")
     await showBalance(startDate.value, endDate.value, appendRowToBalanceTable)
 }
 
-window.renderBalance=renderBalance;
+window.renderBalance = renderBalance;
 
-const showOperationBalanceDiv=()=>{
-    divBalance=createContainer('divBalance');
-    divBalance.innerHTML+=createDivOperationBalance();
+const showOperationBalanceDiv = () => {
+    divBalance = createContainer('divBalance');
+    divBalance.innerHTML += createDivOperationBalance();
     appendContainersToDivMain(divBalance);
 }
 

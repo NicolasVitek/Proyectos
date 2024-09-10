@@ -1,6 +1,6 @@
-import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
-import { getProductCart } from "../service/fetchService.js";
-import { mostrarOrden } from "./factura.js";
+import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
+import { getProductCart } from "../../service/fetchService.js";
+import { renderInvoice } from "../Order/Invoice.js";
 
 var divProductCart;
 var divCompletePurchase;
@@ -8,9 +8,9 @@ var liProductCart = document.getElementById("liProductCart");
 var counterProductCart = 1;
 
 export const createFinishBuyButton = () => `
-<button id='btnCompletePurchase' type="button" onClick="mostrarOrden()" class="btn btn-primary btn-lg btn-block">Finalizar compra</button>
+<button id='btnCompletePurchase' type="button" onClick="renderInvoice()" class="btn btn-primary btn-lg btn-block">Finalizar compra</button>
 `;
-window.mostrarOrden=mostrarOrden;
+window.renderInvoice=renderInvoice;
 export const createProductCartCard = (productId, image, name, price, brand, numero, amaount) => `
   <div class="card w-95 p-3" id="card${numero}">
   <div class="d-flex justify-content-between align-items-start">

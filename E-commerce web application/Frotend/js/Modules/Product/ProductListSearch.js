@@ -1,6 +1,6 @@
-import { buscarProducto } from "../service/fetchService.js";
+import { searchProduct } from "../../service/fetchService.js";
 import { createProductCard } from "./ProductList.js";
-import { appendContainersToDivMain, createContainer } from "../component/divHandler.js";
+import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
 
 var divProductList;
 const btnProductSearch = document.getElementById("btnProductSearch");
@@ -16,7 +16,7 @@ export const appendFilteredProductsToDOM  = (FilteredProductsList) => {
 export const renderFilteredProducts = async () => {
     divProductList=createContainer('divProductList');
     appendContainersToDivMain(divProductList);
-    await buscarProducto(appendFilteredProductsToDOM ); 
+    await searchProduct(appendFilteredProductsToDOM ); 
 };
 
 export const initializeFilteredProducts = () => {
