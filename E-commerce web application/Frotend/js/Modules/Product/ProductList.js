@@ -1,11 +1,14 @@
 import { appendContainersToDivMain, createContainer } from "../../component/DivHandler.js";
 import { getProduct } from "../../service/fetchService.js";
+import { callCreateProductCart } from "../ProductCart/Controls.js";
+import { increaseAmount } from "./Controls.js";
+import { decreaseAmount } from "./Controls.js";
 
 var divProductList;
 const liProductList = document.getElementById("liProductList");
 
 export const createProductCard = ({ productId, image, name, brand, price, code, description }, index) => ` 
-    <div class="card p-4 border border-primary rounded" id="card${index}">
+    <div class="card p-4 border border-primary rounded" id="productCard${index}">
         <img class="card-image" src="${image}" alt="${name}">
         <div class="d-flex justify-content-between align-items-center"></div>
         <div class="card-body" id="cardBody${index}">
@@ -13,17 +16,20 @@ export const createProductCard = ({ productId, image, name, brand, price, code, 
             <h6 class="card-subtitle mb-2 text-muted">${brand}</h6>
             <p class="card-text">${description}. Código: ${code}</p>
             <div id="btnProducto">
-                <button id='btnSumar${index}' type="button" onClick="sumarUnidad(${index})">+</button>
-                <button id="btnRestar${index}" type="button" onClick="restarUnidad(${index})">-</button>
-                <input id='impCantidad${index}' name=${productId} type="number" min="0" value="0" readonly></input>
+                <button id='btnIncreaseAmount${index}' type="button" onClick="increaseAmount(${index})">+</button>
+                <button id="btnDecreaseAmount${index}" type="button" onClick="decreaseAmount(${index})">-</button>
+                <input id='inpAmount${index}' name=${productId} type="number" min="0" value="0" readonly></input>
             </div>
             <div class="buy d-flex justify-content-between align-items-center">
                 <div class="price text-success"><h5 class="mt-4">${"$" + price}</h5></div>
-                <button class="btn btn-primary" id="btnAgregar${index}" type="button" onClick="agregarCarrito(${index})">Agregar</button>
+                <button class="btn btn-primary" id="btnCreateProductCart${index}" type="button" onClick="callCreateProductCart(${index})">Agregar al carrito</button>
             </div>
         </div>
     </div>
 `;
+window.decreaseAmount=decreaseAmount;
+window.increaseAmount=increaseAmount;
+window.callCreateProductCart=callCreateProductCart;
 
 const appendProductToDiv = (productData, index) => {
     divProductList = document.getElementById('divProductList');

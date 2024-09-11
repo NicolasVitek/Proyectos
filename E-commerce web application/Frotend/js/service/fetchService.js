@@ -47,14 +47,14 @@ export const getProduct = async (id) => {
         return null;
     }
 };
-export const getProductCart = async (productId, amaount) => {
+export const getProductCart = async (productId, amount) => {
     try {
         const response = await fetch(`${urlProduct}/${productId}`);
         if (!response.ok) {
             throw new Error("Error en la respuesta del servidor");
         }
         const data = await response.json();
-        return { amaount, ...data };
+        return { amount, ...data };
     } catch (error) {
         console.error("Error al obtener el producto del carrito:", error);
         return null;
@@ -85,7 +85,7 @@ export const createProductCart = async (clientId, productId, amount) => {
 window.createProductCart = createProductCart
 
 export const deleteProductCart = async (clientId, productId) => {
-    await fetch(`${base}/${clientId}/${productId}`, {
+    await fetch(`${urlProductCart}/${clientId}/${productId}`, {
         headers: { "Content-Type": "application/json", },
         method: "DELETE",
     })
@@ -100,7 +100,7 @@ export const deleteProductCart = async (clientId, productId) => {
         })
 }
 export const updateProductCart = async (clientId, productId, amount) => {
-    await fetch(urlCart, {
+    await fetch(urlProductCart, {
         headers: { "Content-Type": "application/json", },
         method: "PATCH",
         body: JSON.stringify({
@@ -116,7 +116,7 @@ export const updateProductCart = async (clientId, productId, amount) => {
     })
         .then(body => {
             localStorage.removeItem(body.productId)
-            localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.cantidad)))
+            localStorage.setItem(body.productId, JSON.stringify(new ProductCart(clientId, body.productId, body.amount)))
             console.log("Producto actualizado")
         })
 }
@@ -151,9 +151,6 @@ export const showBalance = async (startDate, endDate, callback) => {
             if (httpResponse.ok) {
                 return httpResponse.json()
             }
-            else {
-                deployAlert("La factura ya fue generada")
-            }
         })
         .then(body => {
             callback(body.$values);
@@ -168,9 +165,7 @@ export const showOrder = async (callback) => {
             if (httpResponse.ok) {
                 return httpResponse.json()
             }
-            if (httpResponse.status == 500) {
-                deployAlert("La factura ya fue generada")
-            }
+
         })
         .then(body => {
             callback(body);

@@ -11,8 +11,8 @@ export const createFinishBuyButton = () => `
 <button id='btnCompletePurchase' type="button" onClick="renderInvoice()" class="btn btn-primary btn-lg btn-block">Finalizar compra</button>
 `;
 window.renderInvoice=renderInvoice;
-export const createProductCartCard = (productId, image, name, price, brand, numero, amaount) => `
-  <div class="card w-95 p-3" id="card${numero}">
+export const createProductCartCard = (productId, image, name, price, brand, numero, amount) => `
+  <div class="card w-95 p-3" id="productCartCard${numero}">
   <div class="d-flex justify-content-between align-items-start">
       <div class="mt-2">
           <h4 id='title${productId}'>${name}</h4>
@@ -24,18 +24,19 @@ export const createProductCartCard = (productId, image, name, price, brand, nume
       <div class="image mt-2">
           <image src="${image}" width="150">
       </div>
-      <button class="btnDanger" id="btnEliminar${numero}" type="button" onClick="eliminarCarrito(${numero})">X</button>
+      <button class="btnDanger" id="btnDeleteProductCart${numero}" type="button" onClick="callDeleteProductCart(${numero})">X</button>
   </div>       
   <div class="align-items-center" id="btnProducto">
-      <button id='btnSumar${numero}' type="button" onClick="sumarUnidad(${numero})">+</button>
-      <button id="btnRestar${numero}" type="button" onClick="restarUnidad(${numero})">-</button>
-      <input id='impCantidad${numero}' name="${productId}" type="number" min=0 minLength=1 value=${amaount} placeholder="" readonly></input>
-      <button class="btn btn-warning" id="btnModificar${numero}" type="button" onClick="modificarCarrito(${numero})">Modificar</button>
+      <button id='btnIncreaseAmount${numero}' type="button" onClick="increaseAmount(${numero})">+</button>
+      <button id="btnDecreaseAmount${numero}" type="button" onClick="decreaseAmount(${numero})">-</button>
+      <input id='inpAmount${numero}' name="${productId}" type="number" min=0 minLength=1 value=${amount} placeholder="" readonly></input>
+      <button class="btn btn-warning" id="btnUpdateProductCart${numero}" type="button" onClick="callUpdateProductCart(${numero})">Modificar</button>
   </div>    
 `;
-export const appendProductCartToDOM = (amaount, { name, image, price, productId, brand }) => {
+
+export const appendProductCartToDOM = (amount, { name, image, price, productId, brand }) => {
     divProductCart = document.getElementById('divProductCart');
-    divProductCart.innerHTML += createProductCartCard(productId, image, name, price, brand, counterProductCart, amaount);
+    divProductCart.innerHTML += createProductCartCard(productId, image, name, price, brand, counterProductCart, amount);
     divCompletePurchase = document.getElementById('divCompletePurchase');
     divCompletePurchase.innerHTML = createFinishBuyButton();
     counterProductCart++;
@@ -49,8 +50,8 @@ export const renderProductCart = async () => {
         const productId = localStorage.key(i);
         const product = JSON.parse(localStorage.getItem(productId));
         try {
-            const json = await getProductCart(product.productId, product.amaount);
-            appendProductCartToDOM(product.amaount, json);
+            const json = await getProductCart(product.productId, product.amount);
+            appendProductCartToDOM(product.amount, json);
         } catch (error) {
             console.error("Error al obtener el producto del carrito:", error);
         }

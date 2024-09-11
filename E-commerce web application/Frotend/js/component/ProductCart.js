@@ -1,7 +1,7 @@
 export class ProductCart{
-    constructor(clientId, productId, amaount){
+    constructor(clientId, productId, amount){
         this.clientId=clientId;
         this.productId=productId;
-        this.amaount=amaount
+        this.amount=amount;
     }
 }

@@ -33,7 +33,7 @@ export const createBalanceRow = (
     lastName,
     productName,
     productPrice,
-    amaount,
+    amount,
     subTotal
 ) => `
     <tr class="bg-success">
@@ -41,7 +41,7 @@ export const createBalanceRow = (
         <td>${firstName}</td>
         <td>${lastName}</td>
         <td>${productName}</td>
-        <td>${amaount}</td>
+        <td>${amount}</td>
         <td>$${productPrice}</td>
         <td>$${subTotal}</td>
     `;
@@ -60,18 +60,18 @@ export const appendRowToBalanceTable = (listOfOrders) => {
     let total;
     let rowNumber = 1;
     let orderCounter = 0;
-    let orderAmaount = listOfOrders.length;
+    let orderAmount = listOfOrders.length;
     let divOperationBalance = document.getElementById("divOperationBalance");
     let taBalanceTable = document.getElementById("taBalanceTable");
-    while (orderCounter < orderAmaount) {
+    while (orderCounter < orderAmount) {
         let firstNameClient = listOfOrders[orderCounter].firstNameClient
         let lastName = listOfOrders[orderCounter].lastNameClient
         total = listOfOrders[orderCounter].total
         let subTotal = listOfOrders[orderCounter].subTotal
         let productName = listOfOrders[orderCounter].productName
-        let amaount = listOfOrders[orderCounter].productAmount
+        let amount = listOfOrders[orderCounter].productAmount
         let productPrice = listOfOrders[orderCounter].productPrice
-        taBalanceTable.innerHTML += createBalanceRow(rowNumber, firstNameClient, lastName, productName, productPrice, amaount, subTotal)
+        taBalanceTable.innerHTML += createBalanceRow(rowNumber, firstNameClient, lastName, productName, productPrice, amount, subTotal)
         orderCounter++;
         rowNumber++;
     }
