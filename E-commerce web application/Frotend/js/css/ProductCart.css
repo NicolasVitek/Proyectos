@@ -1,37 +1,31 @@
 #divProductCart {
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-    gap: 1%;
-    background-color: rgb(187, 178, 176);
-    grid-auto-columns: 1fr;
-  }
-  #divAgregarAlCarrito {
-    display: flex;
-  }
-  #carrito_producto {
-    margin-left: 1px;
-    display: grid;
-    grid-template-columns: 40px 150px 75px 50px 50px 90px 90px 80px;
-  }
-  .btn.btn-warning {
-    color: #fff; /* color blanco */
-    width: auto;
-  }
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  gap: 1%;
+  background-color: rgb(187, 178, 176);
+  grid-auto-columns: 1fr;
+}
 
-  .btnDanger {
-    background-color: #f13030;
-    border: 2px black;
-    border-style: solid;
-    text-align: center;
-    font-weight: bold;
-  }
-  #btnCerrar {
-    top: -5px;
-  }
-  #divCompletePurchase {
-    display: flex;
-    justify-content: center;
-  }
-  #btnCompletePurchase {
-    width: 100%;
-  }
+.btnWarningProductCart {
+  background-color: #ffc107;
+  width: auto;
+  font-weight: bold;
+}
+
+.btnDangerProductCart {
+  background-color: #f13030;
+  border: 2px black;
+  border-style: solid;
+  text-align: center;
+  font-weight: bold;
+}
+
+#divCompletePurchase {
+  display: flex;
+  justify-content: center;
+}
+
+#btnCompletePurchase {
+  width: 100%;
+}
+

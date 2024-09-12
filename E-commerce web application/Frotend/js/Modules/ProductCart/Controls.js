@@ -19,10 +19,11 @@ const disableCardControls = (cardIndex) => {
 };
 
 const getInputAmount = (cardIndex) => document.getElementById(`inpAmount${cardIndex}`);
+const getUpdateButton = (cardIndex) => document.getElementById(`btnUpdateProductCart${cardIndex}`);
 
-const updateCardStyle = (input) => {
-    input.style.color = "#0AE30A";
-    input.style.fontWeight = "bold";
+const updateButtonStyle = (button) => {
+    button.textContent = 'Actualizado';
+    button.style.backgroundColor = '#28a745'
 };
 
 export const callCreateProductCart = (cardIndex) => {
@@ -39,9 +40,10 @@ export const callDeleteProductCart = (cardIndex) => {
 };
 
 export const callUpdateProductCart = (cardIndex) => {
+    const updateButton = getUpdateButton(cardIndex);
     const inpAmount = getInputAmount(cardIndex);
     if (inpAmount.value > 0) {
-        updateCardStyle(inpAmount);
+        updateButtonStyle(updateButton);
         updateProductCart(1, inpAmount.name, inpAmount.value);
     }
 };

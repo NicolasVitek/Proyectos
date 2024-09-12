@@ -21,16 +21,16 @@ export const createProductCartCard = (productId, image, name, price, brand, nume
               <h1 class="main-heading mt-0">${"$" + price}</h1>
           </div>
       </div>
-      <div class="image mt-2">
+      <div class="image mt-2" id="imgProductCartCard">
           <image src="${image}" width="150">
       </div>
-      <button class="btnDanger" id="btnDeleteProductCart${numero}" type="button" onClick="callDeleteProductCart(${numero})">X</button>
+      <button class="btnDangerProductCart" id="btnDeleteProductCart${numero}" type="button" onClick="callDeleteProductCart(${numero})">X</button>
   </div>       
-  <div class="align-items-center" id="btnProducto">
+  <div class="align-items-center" id="divProductController">
       <button id='btnIncreaseAmount${numero}' type="button" onClick="increaseAmount(${numero})">+</button>
       <button id="btnDecreaseAmount${numero}" type="button" onClick="decreaseAmount(${numero})">-</button>
       <input id='inpAmount${numero}' name="${productId}" type="number" min=0 minLength=1 value=${amount} placeholder="" readonly></input>
-      <button class="btn btn-warning" id="btnUpdateProductCart${numero}" type="button" onClick="callUpdateProductCart(${numero})">Modificar</button>
+      <button class="btnWarningProductCart" id="btnUpdateProductCart${numero}" type="button" onClick="callUpdateProductCart(${numero})">Modificar</button>
   </div>    
 `;
 

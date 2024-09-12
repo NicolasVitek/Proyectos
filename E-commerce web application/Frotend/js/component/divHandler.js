@@ -14,7 +14,3 @@ export const appendContainersToDivMain = (...containers) => {
     cleanDivMain();
     containers.forEach(container => divMain.appendChild(container));
 }
-
-export const appendModuleToDiv=()=>{
-
-}

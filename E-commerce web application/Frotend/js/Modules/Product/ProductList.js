@@ -15,7 +15,7 @@ export const createProductCard = ({ productId, image, name, brand, price, code, 
             <h4 class="card-title" id='title${productId}'>${name}</h4>
             <h6 class="card-subtitle mb-2 text-muted">${brand}</h6>
             <p class="card-text">${description}. Código: ${code}</p>
-            <div id="btnProducto">
+            <div id="divProductController">
                 <button id='btnIncreaseAmount${index}' type="button" onClick="increaseAmount(${index})">+</button>
                 <button id="btnDecreaseAmount${index}" type="button" onClick="decreaseAmount(${index})">-</button>
                 <input id='inpAmount${index}' name=${productId} type="number" min="0" value="0" readonly></input>

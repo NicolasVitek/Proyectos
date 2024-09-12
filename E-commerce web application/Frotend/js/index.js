@@ -4,8 +4,10 @@ import { initializeProductCart } from "./Modules/ProductCart/ProductCart.js";
 import { initializeFilteredProducts } from "./Modules/Product/ProductListSearch.js";
 import { initializeClientForm } from "./Modules/Client/RegisterClient.js";
 import { initializeOrder } from "./Modules/Order/Invoice.js";
+import { updateLiStyle } from "./Modules/NavBar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+    updateLiStyle();
     initializeProductList();
     initializeClientForm();
     initializeFilteredProducts();
